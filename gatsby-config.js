@@ -18,7 +18,6 @@ module.exports = {
       {
         resolve: `gatsby-plugin-sharp`,
         options: {
-          useMozJpeg: false,
           stripMetadata: true,
         },
       },
@@ -27,12 +26,22 @@ module.exports = {
         options: manifestConfig,
       },
       'gatsby-plugin-styled-components',
-      {
+      
+        {
         resolve: `gatsby-plugin-google-fonts`,
         options: {
-          fonts: [`cabin`, `Open Sans`],
+          fonts: [`cabin`,`Open Sans`],
         },
       },
+      // {
+      //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+      //   options: {
+      //     fonts: [
+      //       {family:`cabin`}, 
+      //       {family:`Open Sans`}
+      //     ],
+      //   },
+      // },
       {
         resolve: `gatsby-source-contentful`,
         options: {

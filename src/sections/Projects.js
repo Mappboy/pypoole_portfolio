@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, Text, Flex, Box } from 'rebass';
+import { Text, Flex, Box } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import { path } from 'ramda';
 import Fade from 'react-reveal/Fade';
+import Img from 'gatsby-image';
 import Section from '../components/Section';
 import { CardContainer, Card } from '../components/Card';
 import SocialLink from '../components/SocialLink';
@@ -72,13 +73,13 @@ const TextContainer = styled.div`
 const ImageContainer = styled.div`
   margin: auto;
   width: ${CARD_HEIGHT};
-
+  color: white
   ${MEDIA_QUERY_SMALL} {
     width: calc(${CARD_HEIGHT} / 2);
   }
 `;
 
-const ProjectImage = styled(Image)`
+const ProjectImage = styled(Img)`
   width: ${CARD_HEIGHT};
   height: ${CARD_HEIGHT};
   padding: 40px;
@@ -127,7 +128,7 @@ const Project = ({
       </TextContainer>
 
       <ImageContainer>
-        <ProjectImage src={logo.image.src} alt={logo.title} />
+        <ProjectImage fixed={logo.image} alt={logo.title} />
         <ProjectTag>
           <Flex
             style={{
@@ -144,7 +145,7 @@ const Project = ({
             <Box mx={1} fontSize={5}>
               <SocialLink
                 name="See project"
-                fontAwesomeIcon="globe"
+                fontAwesomeIcon="globe-asia"
                 url={projectUrl}
               />
             </Box>
@@ -194,8 +195,8 @@ const Projects = () => (
               type
               logo {
                 title
-                image: resize(width: 200, quality: 100) {
-                  src
+                image: fluid(maxHeight: 200, quality: 90) {
+                  ...GatsbyContentfulFluid_withWebp
                 }
               }
             }

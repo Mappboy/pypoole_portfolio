@@ -1,15 +1,13 @@
 const colors = {
-  white: {
-    base: '#fff',
-    light: '#f0f0f0',
-    grey: '#cecece',
-    dark: '#a0afd7',
-  },
-  black: {
-    base: '#333438',
-    light: '#4b4e57',
-    blue: '#2e3246',
-  },
+  whiteBase: '#fff',
+  whiteLight: '#f0f0f0',
+  whiteGrey: '#cecece',
+  whiteDark: '#a0afd7',
+
+  blackBase: '#333438',
+  blackLight: '#4b4e57',
+  blackBlue: '#2e3246',
+
   background: '#FFFFFF',
   backgroundDark: '#619686',
 
@@ -52,48 +50,31 @@ const gradient = {
   rightToLeft: `linear-gradient(45deg, ${colors.secondaryDark} 0%, ${colors.backgroundDark} 100%)`,
 };
 
-// const transition = {
-//   easeInOutCubic: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
-//   easeOutBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-//   duration: '0.4s',
-// };
+const transition = {
+  easeInOutCubic: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+  easeOutBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+  duration: '0.4s',
+};
+const breakpoints = {
+  xs: '400px',
+  s: '600px',
+  m: '900px',
+  l: '1200px',
+};
 
 const theme = {
   colors,
-  gradient,
-  // shadow,
-  breakpoints: {
-    xs: '400px',
-    s: '600px',
-    m: '900px',
-    l: '1200px',
-  },
-  layout: {
-    article: '46rem',
-    base: '70rem',
-    big: '83.33333rem',
-  },
-  // borderRadius: {
-  //   default: '0.4rem',
-  //   round: '100rem',
-  // },
-  // transitions: {
-  //   default: {
-  //     duration: transition.duration,
-  //     timing: transition.easeInOutCubic,
-  //     transition: `all ${transition.duration} ${transition.easeInOutCubic}`,
-  //   },
-  //   boom: {
-  //     duration: transition.duration,
-  //     timing: transition.easeOutBack,
-  //     transition: `all ${transition.duration} ${transition.easeOutBack}`,
-    };
-    // headroom: {
-    //   transition: 'all 0.25s ease-in-out',
-    // },
+  // fontSizes: [
+  //   12, 14, 16, 20, 24, 32, 48, 64
+  // ],
+};
+
  
 
 module.exports = {
   colors,
-  theme
+  theme,
+  breakpoints,
+  gradient,
+  transition
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Heading, Box } from 'rebass';
 import { StaticQuery, graphql, navigate } from 'gatsby';
 import styled from 'styled-components';
-
+import Img from 'gatsby-image'
 
 import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
@@ -38,8 +38,8 @@ const Background = () => (
 );
 
 
-const CoverImage = styled.img`
-  width: 100%;
+const CoverImage = styled(Img)`
+  width: 396px;
   object-fit: cover;
 `;
 
@@ -57,7 +57,7 @@ const Post = ({ title, text, heroImage, slug, createdAt, readingTime }) => (
     <EllipsisHeading m={3} p={1}>
       {title}
     </EllipsisHeading>
-    {heroImage && <CoverImage src={heroImage.image.src} height="200px" alt={heroImage.description} />}
+    {heroImage && <CoverImage fluid={heroImage.image} height="200px" alt={heroImage.description} />}
     {text && (
     <Box m={3}>
       <div 
@@ -111,8 +111,8 @@ const Writing = () => (
               }
               heroImage {
                 description
-                image: resize(width: 396, quality: 100) {
-                  src
+                image: fluid(maxWidth: 396, quality: 100) {
+                  ...GatsbyContentfulFluid_withWebp
                 }
               }
               slug

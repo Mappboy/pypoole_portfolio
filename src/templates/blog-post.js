@@ -9,7 +9,7 @@ import Section from '../components/Section';
 import Layout from '../components/Layout';
 import Header from '../components/BlogHeader';
 import Footer from '../components/Footer';
-import { theme } from '../theme';
+import { theme, gradient, breakpoints } from '../theme';
 
 
 // const Title = styled(Text)`
@@ -30,23 +30,24 @@ const TextContainer = styled(Text)`
 const Wrapper = styled.div`
   -webkit-clip-path: polygon(100% 0, 0 0, 0 70%, 50% 100%, 100% 70%);
   clip-path: polygon(100% 0, 0 0, 0 70%, 50% 100%, 100% 70%);
-  @media (max-width: ${theme.breakpoints.s}) {
+  @media (max-width: ${breakpoints.s}) {
     -webkit-clip-path: polygon(100% 0, 0 0, 0 90%, 50% 100%, 100% 90%);
     clip-path: polygon(100% 0, 0 0, 0 90%, 50% 100%, 100% 90%);
   }
-  background: ${theme.gradient.rightToLeft};
+  background: ${gradient.rightToLeft};
   height: 300px;
-  @media (max-width: ${theme.breakpoints.m}) {
+  @media (max-width: ${breakpoints.m}) {
     height: 300px;
   }
-  @media (max-width: ${theme.breakpoints.s}) {
+  @media (max-width: ${breakpoints.s}) {
     height: 275px;
   }
   position: relative;
   overflow: hidden;
 `;
+
 const CenterText = styled(Text)`
-  color: ${theme.colors.white};
+  color: ${theme.colors.primaryDark};
   z-index: 0;
   position: absolute;
   top: 50%;
@@ -56,11 +57,11 @@ const CenterText = styled(Text)`
   flex-direction: column;
   text-align: center;
   width: 100%;
-  max-width: ${theme.layout.base};
+  max-width: 70rem;
   padding: 0 1rem;
   margin-bottom: 3rem;
   align-items: center;
-  text-shadow: 5px 5px 10px rgba(250,250,250,0.8);
+  text-shadow: 5px 5px 10px rgba(250,250,250,0.9);
 `;
 
 
@@ -78,7 +79,7 @@ return (
           width={[1, 1, 4 / 6]} 
           px={[1, 2, 4]}
           fontWeight='bold'
-          fontSize={7}
+          fontSize={6}
         >
           {post.title}
         </Text>
@@ -153,9 +154,6 @@ query ($slug: String!) {
     createDate(formatString: "DD MM YYYY")
     heroImage {
       description
-      image: resize(width: 768, quality: 100) {
-        src
-      }
       fluid(maxWidth: 1920, quality: 90) {
         ...GatsbyContentfulFluid_withWebp
       }
