@@ -1,22 +1,10 @@
-const contentful = require('contentful');
 const manifestConfig = require('./manifest-config');
 require('dotenv').config();
 
 const { ACCESS_TOKEN, SPACE_ID } = process.env;
 
-const client = contentful.createClient({
-  space: SPACE_ID,
-  accessToken: ACCESS_TOKEN,
-});
 
-module.exports = client.getEntries().then(entries => {
-  const aboutEntry = entries.items.find(
-    entry => entry.sys.contentType.sys.id === 'about',
-  );
-
-  const about = aboutEntry.fields;
-
-  return {
+module.exports = {
     plugins: [
       'gatsby-plugin-react-helmet',
       `@contentful/gatsby-transformer-contentful-richtext`,
@@ -24,7 +12,7 @@ module.exports = client.getEntries().then(entries => {
       {
         resolve: `gatsby-plugin-typography`,
         options: {
-           pathToConfigModule: `src/utils/typography`,
+           pathToConfigModule: `src/typography`,
         }
        },
       {
@@ -62,4 +50,3 @@ module.exports = client.getEntries().then(entries => {
       'gatsby-plugin-offline',
     ],
   };
-});

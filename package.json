@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-mate",
+  "name": "cam-pypoole-mappboy-portfolio",
   "version": "2.0.0",
-  "description": "Gatsby v2 starter to create a top notch portfolio!",
+  "description": "Cam/Mappboy/PyPoole portfolio!",
   "main": "index.js",
   "scripts": {
     "build": "cleandir ./.cache && gatsby build",
