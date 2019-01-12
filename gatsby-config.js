@@ -26,13 +26,12 @@ module.exports = {
         options: manifestConfig,
       },
       'gatsby-plugin-styled-components',
-      
-        {
-        resolve: `gatsby-plugin-google-fonts`,
-        options: {
-          fonts: [`cabin`,`Open Sans`],
-        },
-      },
+      //   {
+      //   resolve: `gatsby-plugin-google-fonts`,
+      //   options: {
+      //     fonts: [`cabin`,`Open Sans`],
+      //   },
+      // },
       // {
       //   resolve: `gatsby-plugin-prefetch-google-fonts`,
       //   options: {

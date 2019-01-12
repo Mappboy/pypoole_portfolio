@@ -128,7 +128,7 @@ const Project = ({
       </TextContainer>
 
       <ImageContainer>
-        <ProjectImage fixed={logo.image} alt={logo.title} />
+        <ProjectImage fluid={logo.image} alt={logo.title} />
         <ProjectTag>
           <Flex
             style={{
@@ -145,7 +145,7 @@ const Project = ({
             <Box mx={1} fontSize={5}>
               <SocialLink
                 name="See project"
-                fontAwesomeIcon="globe-asia"
+                fontAwesomeIcon="globe"
                 url={projectUrl}
               />
             </Box>

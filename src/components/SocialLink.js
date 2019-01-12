@@ -14,7 +14,7 @@ const IconLink = styled(Link)`
     color: ${path(['theme', 'colors', 'primaryLight'])};
   }
 `;
-const plain_icons = ["globe-asia", "envelope", "globe"]
+const plain_icons = ["envelope", "globe"]
 const SocialLink = ({ fontAwesomeIcon, name, url }) => (
   <Tooltip title={name} position="bottom" trigger="mouseenter">
     <IconLink href={url} target="_blank" rel="noopener noreferrer">

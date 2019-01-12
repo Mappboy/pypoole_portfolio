@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Image, Flex } from 'rebass';
+import { Box, Flex } from 'rebass';
+import  Img  from 'gatsby-image'; 
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
@@ -32,7 +33,7 @@ const Background = () => (
   </div>
 );
 
-const ProfilePicture = styled(Image)`
+const ProfilePicture = styled(Img)`
   border-radius: 50%;
   transition: all 0.25s ease-out;
 
@@ -55,8 +56,8 @@ const About = () => (
             }
             profile {
               title
-              image: resize(width: 450, quality: 100) {
-                src
+              image: fluid(maxWidth: 450, quality: 100) {
+                ...GatsbyContentfulFluid_withWebp
               }
             }
           }
@@ -80,12 +81,16 @@ const About = () => (
               style={{ maxWidth: '300px', margin: 'auto' }}
             >
               <Fade right>
-                <ProfilePicture
-                  src={profile.image.src}
-                  alt={profile.title}
+                <Box 
                   mt={[4, 4, 0]}
                   ml={[0, 0, 1]}
-                />
+                >
+                  <ProfilePicture
+                    fluid={profile.image}
+                    alt={profile.title}
+                  />
+                </Box>
+      
               </Fade>
             </Box>
           </Flex>
