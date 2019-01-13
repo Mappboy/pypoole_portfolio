@@ -51,6 +51,13 @@ const Header = () => (
             >
                 Blog
             </RouteLink>
+            <RouteLink 
+              key="blog"
+              onClick={() => navigate(`/tags`)}
+              dark
+            >
+                Tags
+            </RouteLink>
           </Flex>
         </Fragment>
       </Flex>
