@@ -22,12 +22,12 @@
     "PWA",
     "portfolio"
   ],
-  "author": "Ema Suriano",
+  "author": "Cameron Poole",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EmaSuriano/gatsby-starter-mate/issues"
+    "url": "https://github.com/Mappboy/pypoole_portfolio"
   },
-  "homepage": "https://github.com/EmaSuriano/gatsby-starter-mate#readme",
+  "homepage": "https://github.com/Mappboy/pypoole_portfolio#readme",
   "dependencies": {
     "@contentful/gatsby-transformer-contentful-richtext": "^12.1.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
