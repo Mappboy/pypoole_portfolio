@@ -1,10 +1,10 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, navigate } from "gatsby"
 import PropTypes from 'prop-types';
-import {  Flex, Text } from 'rebass';
+import {  Flex, Text, Box } from 'rebass';
 import styled from 'styled-components';
 import Img  from 'gatsby-image';
-
+import { path } from 'ramda';
 import Section from '../components/Section';
 import Layout from '../components/Layout';
 import Header from '../components/BlogHeader';
@@ -66,6 +66,33 @@ const CenterText = styled(Text)`
 
 
 
+const StyledLink = styled(Text)`
+  text-decoration: none;
+  transition: background 1s;
+  cursor: pointer;
+  transition-property: width;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  &:hover {
+    color: ${theme.colors.whiteLight},
+    background: ${theme.colors.primaryDark},
+    border: ${theme.colors.primaryLight}
+  }
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 0;
+      bottom: -5px;
+      background: ${path(['theme', 'colors', 'secondaryDark'])};
+      height: 5px;
+      transition-property: width;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out;
+    }
+  text-shadow: 5px 5px 10px rgba(0,0,0,0.9);
+`
+
 const BlogPage = ({data}) => {
 const post = data.contentfulBlogPost;
 const image = post.heroImage.fluid;
@@ -88,7 +115,18 @@ return (
         {post.subtitle && 
           (
           <Text fontSize={4} dangerouslySetInnerHTML={{ __html:post.subtitle.childMarkdownRemark.html}} />)}
+        <Flex>
+          {post.tags && post.tags.map((tagName, index) => {
+              const upperTag = tagName.charAt(0).toUpperCase() + tagName.slice(1);
+              return (
+                <Box key={tagName} ml={[2, 3]} color="background" fontSize={[2, 3]}>
+                  <StyledLink p={1} color="white" fontSize={2} onClick={() => navigate(`/tags/${tagName}`)}>{upperTag}</StyledLink>
+                </Box>
+              )
+            })}
+        </Flex>
       </CenterText>
+      
     </Wrapper>
     <Section.Container id="home">
       <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
@@ -130,6 +168,7 @@ BlogPage.propTypes = {
         slug: PropTypes.string.isRequired,
         createDate: PropTypes.string.isRequired,
         readingTime: PropTypes.number.isRequired,
+        tags: PropTypes.arrayOf(PropTypes.string)
             }
     ).isRequired,
   })};
@@ -141,6 +180,7 @@ query ($slug: String!) {
     title
     slug
     readingTime
+    tags
     subtitle {
       childMarkdownRemark {
         html

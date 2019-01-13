@@ -9,8 +9,6 @@ import RouteLink from './RouteLink';
 import Logo from './Logo/Mammoth.svg';
 
 
-// const capitalize = s => s && s[0].toUpperCase() + s.slice(1);
-
 
 const HeaderContainer = styled(Headroom)`
   .headroom--pinned {
@@ -42,12 +40,14 @@ const Header = () => (
             <RouteLink 
               key="home"
               onClick={() => navigate(`/`)}
+              dark
             >
                 Home
             </RouteLink>
             <RouteLink 
               key="blog"
               onClick={() => navigate(`/blog`)}
+              dark
             >
                 Blog
             </RouteLink>

@@ -11,14 +11,14 @@ const TagsContainer = styled.div`
   justify-content: center;
   a {
     margin: 0 1rem 1rem 0;
-    color: ${props => props.theme.colors.black.blue};
+    color: ${props => props.theme.colors.blackblue};
     padding: .3rem .6rem;
-    background: ${props => props.theme.colors.white.grey};
+    background: ${props => props.theme.colors.whitegrey};
     border-radius: 10px;
     &:hover {
-      color: ${props => props.theme.colors.white.light};
-      background: ${props => props.theme.colors.primary.light};
-      border: ${props => props.theme.colors.primary.light};
+      color: ${props => props.theme.colors.whitelight};
+      background: ${props => props.theme.colors.primaryLight};
+      border: ${props => props.theme.colors.primaryLight};
     }
 `;
 
@@ -39,5 +39,8 @@ const TagsBlock = ({ list }) => (
 export default TagsBlock;
 
 TagsBlock.propTypes = {
-  list: PropTypes.array,
+  list: PropTypes.shape({
+    tag: PropTypes.string
+  }
+  ),
 };

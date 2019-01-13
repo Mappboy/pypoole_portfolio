@@ -54,8 +54,8 @@ const EllipsisHeading = styled(Heading)`
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
-const Post = ({ title, text, heroImage, slug, createdAt, readingTime }) => (
-  <Card onClick={() => navigate(`blog/${slug}`)} pb={4}>
+const Post = ({ title, text, heroImage, path, createdAt, readingTime }) => (
+  <Card onClick={() => navigate(path)} pb={4}>
     <EllipsisHeading m={3} p={1}>
       {title}
     </EllipsisHeading>
@@ -82,21 +82,21 @@ Post.propTypes = {
     }
     )
   }),
-  slug: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   readingTime: PropTypes.number.isRequired,
 };
 
 const Tag = ({pageContext}) => {
   const { posts, tagName } = pageContext
-  const upperTag = tagName.charAt(0).toUpperCase() + tagName.slice(1);
   return (
     <Section.Container id="tags" Background={Background}>
       <Section.Header name="Tags" icon="✍️" label="tags" />
       <Box>
-        <Heading>
-          {`Posts about ${upperTag}`}
-        </Heading>
+        <Text>
+          Posts about 
+          {`${tagName}`}
+        </Text>
         <CardContainer minWidth="300px">
           {posts.map((post, index) => {
             return (

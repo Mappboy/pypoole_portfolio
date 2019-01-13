@@ -4,7 +4,6 @@ const typography = new Typography({
   baseFontSize: "13px",
   baseLineHeight: 1.666,
   headerFontFamily: [
-    "Cabin",
     "Avenir Next",
     "Helvetica Neue",
     "Open Sans",

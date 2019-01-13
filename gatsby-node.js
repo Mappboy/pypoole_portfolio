@@ -6,13 +6,27 @@ exports.createPages = ({ graphql, actions }) => {
   const tagPosts = path.resolve('src/templates/tag.js');
   const postsByTag = {};
   return graphql(`
-    {
+    query {
         allContentfulBlogPost {
         edges {
           node {
-            slug
-            tags
-            title
+            id
+              title
+              text: description {
+                childContentfulRichText{
+                  html
+                }
+              }
+              heroImage {
+                description
+                image: fluid(maxWidth: 396, quality: 100) {
+                  src
+                }
+              }
+              slug
+              createdAt(formatString: "MMM YYYY")
+              readingTime
+              tags
           }
         }
       }
