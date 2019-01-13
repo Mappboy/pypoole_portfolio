@@ -1,5 +1,4 @@
 const path = require(`path`)
-
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions  
   const tagPage = path.resolve('src/pages/tags.js');
@@ -12,8 +11,8 @@ exports.createPages = ({ graphql, actions }) => {
           node {
             id
               title
-              description {
-                childContentfulRichText {
+              description : subtitle{
+                childMarkdownRemark {
                   html
                 }
               }
