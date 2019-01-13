@@ -7,3 +7,6 @@ Originally from the Mate Starter.
 - [ ] Refactor blog post and tag code to make use of components
 - [ ] Add ToolBox Page
 - [ ] Add Public Disservice page
+- [ ] Fix Link hover
+- [ ] Google Sheets config to .env
+- [ ] Fix SEO for Pages

@@ -2,7 +2,7 @@
 import React from 'react';
 import {  navigate } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Heading, Box, Text } from 'rebass';
+import { Heading, Box } from 'rebass';
 import styled from 'styled-components';
 
 import Fade from 'react-reveal/Fade';

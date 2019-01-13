@@ -1,11 +1,10 @@
-const contentful = require('contentful');
 const manifestConfig = require('./manifest-config');
 require('dotenv').config();
 
 const { ACCESS_TOKEN, SPACE_ID } = process.env;
+const { client_config } = require('./client_secret.js')
 
-
-
+console.log(client_config)
 module.exports = {
     plugins: [
       'gatsby-plugin-react-helmet',
@@ -28,6 +27,22 @@ module.exports = {
         options: manifestConfig,
       },
       'gatsby-plugin-styled-components',
+      {
+        resolve: 'gatsby-source-google-sheets',
+        options: {
+            spreadsheetId: '16yxrlTSXQqHBAVXlUrRW8oxwCtuEDekdVirzZU7D_XI',
+            worksheetTitle: 'Cards',
+            credentials: client_config
+        }
+    },
+    {
+      resolve: 'gatsby-source-google-sheets',
+      options: {
+          spreadsheetId: '16yxrlTSXQqHBAVXlUrRW8oxwCtuEDekdVirzZU7D_XI',
+          worksheetTitle: 'Projects',
+          credentials: client_config
+      }
+  },
       //   {
       //   resolve: `gatsby-plugin-google-fonts`,
       //   options: {

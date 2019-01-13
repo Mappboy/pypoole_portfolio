@@ -50,17 +50,6 @@ const gradient = {
   rightToLeft: `linear-gradient(45deg, ${colors.secondaryDark} 0%, ${colors.backgroundDark} 100%)`,
 };
 
-const transition = {
-  easeInOutCubic: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
-  easeOutBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-  duration: '0.4s',
-};
-const breakpoints = {
-  xs: '400px',
-  s: '600px',
-  m: '900px',
-  l: '1200px',
-};
 
 const theme = {
   colors,
@@ -74,7 +63,5 @@ const theme = {
 module.exports = {
   colors,
   theme,
-  breakpoints,
   gradient,
-  transition
 };

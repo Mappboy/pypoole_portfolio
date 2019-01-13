@@ -52,7 +52,7 @@ const Header = () => (
                 Blog
             </RouteLink>
             <RouteLink 
-              key="blog"
+              key="tags"
               onClick={() => navigate(`/tags`)}
               dark
             >

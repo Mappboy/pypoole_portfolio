@@ -9,7 +9,7 @@ import Section from '../components/Section';
 import Layout from '../components/Layout';
 import Header from '../components/BlogHeader';
 import Footer from '../components/Footer';
-import { theme, gradient, breakpoints } from '../theme';
+import { theme, gradient } from '../theme';
 
 
 // const Title = styled(Text)`
@@ -30,16 +30,16 @@ const TextContainer = styled(Text)`
 const Wrapper = styled.div`
   -webkit-clip-path: polygon(100% 0, 0 0, 0 70%, 50% 100%, 100% 70%);
   clip-path: polygon(100% 0, 0 0, 0 70%, 50% 100%, 100% 70%);
-  @media (max-width: ${breakpoints.s}) {
+  @media (max-width: 600px) {
     -webkit-clip-path: polygon(100% 0, 0 0, 0 90%, 50% 100%, 100% 90%);
     clip-path: polygon(100% 0, 0 0, 0 90%, 50% 100%, 100% 90%);
   }
   background: ${gradient.rightToLeft};
   height: 300px;
-  @media (max-width: ${breakpoints.m}) {
+  @media (max-width: 900px) {
     height: 300px;
   }
-  @media (max-width: ${breakpoints.s}) {
+  @media (max-width: 600px) {
     height: 275px;
   }
   position: relative;

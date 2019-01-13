@@ -38,8 +38,9 @@ const Background = () => (
 );
 
 
+
 const CoverImage = styled(Img)`
-  width: 396px;
+  width: 100%;
   object-fit: cover;
 `;
 
@@ -53,7 +54,7 @@ const EllipsisHeading = styled(Heading)`
 `;
 
 const Post = ({ title, text, heroImage, slug, createdAt, readingTime }) => (
-  <Card onClick={() => navigate(`blog/${slug}`)} pb={4} bg="white">
+  <Card onClick={() => navigate(`blog/${slug}`)} pb={4} bg="white" minWidth="350px">
     <EllipsisHeading m={3} p={1}>
       {title}
     </EllipsisHeading>
@@ -126,7 +127,7 @@ const Writing = () => (
       render={({ allContentfulBlogPost }) => {
         const posts = edgeToArray(allContentfulBlogPost);
         return (
-          <CardContainer minWidth="300px">
+          <CardContainer minWidth="350px">
             {posts.map(p => (
               <Fade bottom key={p.id}>
                 <Post key={p.id} {...p} />
