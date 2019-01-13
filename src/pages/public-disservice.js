@@ -125,8 +125,8 @@ const PD = () => (
       render={({ allGoogleSheetCardsRow }) => {
         const cards = edgeToArray(allGoogleSheetCardsRow);
         const cardsByCategory = {}
-        window.cards = cards;
-        window.cBC = cardsByCategory;
+        // window.cards = cards;
+        // window.cBC = cardsByCategory;
         cards.forEach(card => {
             if (!cardsByCategory[card.category]) {
                 cardsByCategory[card.category] = [];
