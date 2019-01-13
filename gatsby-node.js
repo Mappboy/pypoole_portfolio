@@ -13,7 +13,7 @@ exports.createPages = ({ graphql, actions }) => {
             id
               title
               text: description {
-                childContentfulRichText{
+                childContentfulRichText {
                   html
                 }
               }
