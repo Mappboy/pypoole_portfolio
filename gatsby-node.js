@@ -35,11 +35,10 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
-    const { allContentfulBlogPost } = result.data;
-    if (allContentfulBlogPost === undefined ){
+    if (result.data === undefined || result.data.allContentfulBlogPost === undefined ){
       throw new Error("No data in GraphQL???")
     }
-    allContentfulBlogPost.edges.forEach(({ node }) => {
+    result.data.allContentfulBlogPost.edges.forEach(({ node }) => {
         createPage({        
             path: `blog/${node.slug}`,        
             component: path.resolve(`./src/templates/blog-post.js`),        
