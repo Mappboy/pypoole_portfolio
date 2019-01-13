@@ -6,7 +6,7 @@ exports.createPages = ({ graphql, actions }) => {
   const tagPosts = path.resolve('src/templates/tag.js');
   const postsByTag = {};
   return graphql(`
-    query {
+    {
         allContentfulBlogPost {
         edges {
           node {
@@ -32,8 +32,11 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then(result => {
+    if (result.errors) {
+      throw result.errors
+    }
     const { allContentfulBlogPost } = result.data;
-    if (allContentfulBlogPost=== undefined ){
+    if (allContentfulBlogPost === undefined ){
       throw new Error("No data in GraphQL???")
     }
     allContentfulBlogPost.edges.forEach(({ node }) => {
