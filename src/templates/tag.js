@@ -54,14 +54,14 @@ const EllipsisHeading = styled(Heading)`
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
-const Post = ({ title, text, heroImage, slug, createdAt, readingTime }) => (
+const Post = ({ title, description, heroImage, slug, createdAt, readingTime }) => (
   <Card onClick={() => navigate(`blog/${slug}`)} pb={4}>
     <EllipsisHeading m={3} p={1}>
       {title}
     </EllipsisHeading>
     {heroImage && <CoverImage src={heroImage.image.src} height="200px" alt={title} />}
-    {text && (
-    <Box m={3} dangerouslySetInnerHTML={{__html: text.childContentfulRichText.html}} />
+    {description && (
+    <Box m={3} dangerouslySetInnerHTML={{__html: description.childContentfulRichText.html}} />
     )}
     <ImageSubtitle bg="primaryLight" color="white" x="right" y="bottom">
       {`${createdAt} - ${Math.ceil(readingTime)} min`}
@@ -71,7 +71,7 @@ const Post = ({ title, text, heroImage, slug, createdAt, readingTime }) => (
 
 Post.propTypes = {
   title: PropTypes.string.isRequired,
-  text: PropTypes.shape({
+  description: PropTypes.shape({
     childContentfulRichText: PropTypes.shape(
       {html: PropTypes.string}
     )
