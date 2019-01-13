@@ -49,14 +49,11 @@
     "gatsby-plugin-html-attributes": "^1.0.5",
     "gatsby-plugin-manifest": "^2.0.2",
     "gatsby-plugin-offline": "^2.0.5",
-    "gatsby-plugin-prefetch-google-fonts": "^1.1.1",
     "gatsby-plugin-react-helmet": "^3.0.0",
-    "gatsby-plugin-resolve-src": "^1.1.4",
     "gatsby-plugin-sharp": "^2.0.17",
     "gatsby-plugin-styled-components": "^3.0.0",
     "gatsby-plugin-typography": "^2.2.5",
     "gatsby-source-contentful": "^2.0.1",
-    "gatsby-source-medium": "^2.0.0",
     "gatsby-transformer-remark": "^2.1.3",
     "gatsby-transformer-sharp": "^2.1.10",
     "i": "^0.3.6",
@@ -92,7 +89,6 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "^7.12.2",
-    "google-fonts-plugin": "^2.1.0"
+    "eslint-plugin-react": "^7.12.2"
   }
 }

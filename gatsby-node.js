@@ -20,7 +20,7 @@ exports.createPages = ({ graphql, actions }) => {
               heroImage {
                 description
                 image: fluid(maxWidth: 396, quality: 100) {
-                  ...GatsbyContentfulFluid_withWebp
+                  src
                 }
               }
               slug
