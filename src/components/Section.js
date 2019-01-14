@@ -1,4 +1,5 @@
 import React from 'react';
+import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import { Section } from 'react-scroll-section';
 import { Heading } from 'rebass';
@@ -34,13 +35,13 @@ Container.propTypes = {
   Background: PropTypes.func,
 };
 
-const Header = ({ name, icon = '', label = '' }) => (
+const Header = ({ name, icon = '', label = ''}) => (
   <Slide left>
     <Heading color="secondaryDark" mb={4}>
       <LinkAnimated selected>
         {name}
         {icon && (
-          <span role="img" aria-label={label} style={{ marginLeft: '10px' }}>
+          <span role="img" aria-label={label} style={{ marginLeft: '10px' }} alt={name}>
             {icon}
           </span>
         )}
@@ -55,7 +56,29 @@ Header.propTypes = {
   label: PropTypes.string,
 };
 
+const HeaderRoute = ({ name, icon = '', label = '', link}) => (
+  <Slide right>
+    <Heading color="secondaryDark" mb={4} mt={3} textAlign='right' mr={[4, 4]}>
+      <LinkAnimated onClick={()=> navigate(link)}>
+        {name}
+        {icon && (
+          <span role="img" aria-label={label} style={{ marginLeft: '10px' }} alt={name}>
+            {icon}
+          </span>
+        )}
+      </LinkAnimated>
+    </Heading>
+  </Slide>
+);
+
+HeaderRoute.propTypes = {
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  label: PropTypes.string,
+  link: PropTypes.string
+};
 export default {
   Container,
   Header,
+  HeaderRoute
 };

@@ -4,7 +4,6 @@ require('dotenv').config();
 const { ACCESS_TOKEN, SPACE_ID } = process.env;
 const { client_config } = require('./client_secret.js')
 
-console.log(client_config)
 module.exports = {
     plugins: [
       'gatsby-plugin-react-helmet',

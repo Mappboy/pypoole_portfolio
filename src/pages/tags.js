@@ -2,15 +2,17 @@
 import React from 'react';
 import {  navigate } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Flex, Card } from 'rebass';
+import { Flex, Card, Heading, Box } from 'rebass';
 import styled from 'styled-components';
 
-import Fade from 'react-reveal/Fade';
+import { LightSpeed, Fade } from 'react-reveal';
 import Triangle from '../components/Triangle';
 import Layout from '../components/Layout';
 import Header from '../components/BlogHeader';
 import Footer from '../components/Footer';
 import Section from '../components/Section';
+import LinkAnimated from '../components/LinkAnimated';
+
 import { theme } from '../theme';
 
 
@@ -18,7 +20,7 @@ const Background = () => (
   <div>
     <Triangle
       color="backgroundDark"
-      height={['15vh', '10vh']}
+      height={['15vh', '20vh']}
       width={['100vw', '100vw']}
       invertX
     />
@@ -76,29 +78,54 @@ const StyledBadge = styled(Badge)`
     props.selected &&
     `border-bottom:  5px solid ${props.theme.colors.primaryLight}`};
 `
+const Container = styled(Flex)`
+  min-height: 100vh;
+  min-width: 320px;
+  max-width: 1366px;
+  display: flex;
+  margin: auto;
+  flex: 0 1 auto;
+  flex-direction: column;
+  scroll-behavior: smooth;
+`
 const Tags = ({pageContext}) => {
   const { tags } = pageContext
   return (
-    <Section.Container id="tags" Background={Background}>
-      <Section.Header name="Tags" icon="✍️" label="tags" />
-      <Flex
-        m={7}
-        flexDirection='row'
-        flexWrap='wrap'
-        justifyContent='center'
-      >
-        {tags && tags.map((tagName, index) => {
-          const upperTag = tagName.charAt(0).toUpperCase() + tagName.slice(1);
-          return (
-            <Fade key={tagName}>
-              <StyledBadge onClick={() => navigate(`/tags/${tagName}`)}>
-                {upperTag}
-              </StyledBadge>
-            </Fade>
-          )
-        })}
-      </Flex>
-    </Section.Container>
+    
+    <Container id="tags" flexDirection='col'>
+      <Background />
+      <Box mt={5} p={3}>
+        <LightSpeed left>
+          <Heading color="secondaryDark">
+            <LinkAnimated selected>
+              Tags
+              <span role="img" aria-label='tags' style={{ marginLeft: '10px' }} alt='Tags'>
+              🏷️
+              </span>
+            </LinkAnimated>
+          </Heading>
+        </LightSpeed>
+      </Box>
+      <Box mt={5}>
+        <Flex 
+          flexDirection='row'
+          flexWrap='wrap'
+          justifyContent='center'
+          p={2}
+        >
+          {tags && tags.map((tagName, index) => {
+            const upperTag = tagName.charAt(0).toUpperCase() + tagName.slice(1);
+            return (
+              <Fade key={tagName}>
+                <StyledBadge onClick={() => navigate(`/tags/${tagName}`)}>
+                  {upperTag}
+                </StyledBadge>
+              </Fade>
+            )
+          })}
+        </Flex>
+      </Box>
+    </Container>
   )
 }
 

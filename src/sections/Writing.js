@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Heading, Box } from 'rebass';
+import { Heading, Box, Flex } from 'rebass';
 import { StaticQuery, graphql, navigate } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image'
@@ -137,6 +137,7 @@ const Writing = () => (
         );
       }}
     />
+    <Section.HeaderRoute name="All Articles >" icon="📰" label="all_articles" link='blog' mt={3} />
   </Section.Container>
 );
 

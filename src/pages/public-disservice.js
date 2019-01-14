@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import { CardContainer, Card } from '../components/Card';
-import Triangle from '../components/Triangle';
 import ImageSubtitle from '../components/ImageSubtitle';
 import Layout from '../components/Layout';
 import Header from '../components/BlogHeader';
@@ -23,31 +22,6 @@ const Container = styled(Box)`
   width: 100%;
 `;
 
-const Background = () => (
-  <div>
-    <Triangle
-      color="backgroundDark"
-      height={['15vh', '10vh']}
-      width={['100vw', '100vw']}
-      invertX
-    />
-
-    <Triangle
-      color="secondary"
-      height={['50vh', '40vh']}
-      width={['70vw', '40vw']}
-      invertY
-    />
-
-    <Triangle
-      color="primaryDark"
-      height={['40vh', '15vh']}
-      width={['100vw', '100vw']}
-      invertX
-      invertY
-    />
-  </div>
-);
 
 const EllipsisHeading = styled(Heading)`
   overflow: hidden;
@@ -59,20 +33,20 @@ const EllipsisHeading = styled(Heading)`
 `;
 
 const Post = ({ name, category, descriptionillustration, effect }) => (
-  <Card pb={4}>
+  <Card pb={4} height={[400, 400]}>
     <EllipsisHeading m={3} p={1}>
       {name}
     </EllipsisHeading>
     {descriptionillustration && 
       (
-      <Box height="200px">
-        <Text>
+      <Box height={[400, 400]} width={[1, 1]} justifyContent='center' >
+        <Text height={[1, 1]} width={[0.8]} textAlign='center' justifyContent='center' p={4}>
           {descriptionillustration}
         </Text>
       </Box>
       )
     }
-    <Text>{effect}</Text>
+    <Text p={1} textAlign='center'>{effect}</Text>
     <ImageSubtitle bg="primaryLight" color="white" x="right" y="bottom">
       {`${category}`}
     </ImageSubtitle>
@@ -141,14 +115,19 @@ const PD = () => (
                   <Section.Header name={category} label={category} />
                   <Flex>
                     <CardContainer id={category} minWidth="300px">
-                      {cardsByCategory[category].map(card => {
-                          [...Array(Number.parseInt(card.quantity))].map(i => {
-                            return (
-                              <Fade key={card.id+i.toString()} bottom delay={i * 200}>
-                                <Post key={card.id+i.toString()} {...card} />
-                              </Fade>
-                            )
-                      })                       
+                      {cardsByCategory[category].map((card,i) => {
+                        return (
+                          <Fade key={card.id} bottom delay={i * 200}>
+                            <Post key={card.id} {...card} />
+                          </Fade>
+                        )
+                      //     [...Array(Number.parseInt(card.quantity))].map(i => {
+                      //       return (
+                      //         <Fade key={card.id+i.toString()} bottom delay={i * 200}>
+                      //           <Post key={card.id+i.toString()} {...card} />
+                      //         </Fade>
+                      //       )
+                      // })                 
                       }
                     )}
                     </CardContainer>

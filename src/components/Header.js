@@ -72,12 +72,6 @@ const Header = () => (
                 {homeLink}
                 <Flex mr={[0, 3, 5]}>
                   {navLinks}
-                  <RouteLink 
-                    key="blog"
-                    onClick={() => navigate(`/blog`)}
-                  >
-                  Blog
-                  </RouteLink>
                 </Flex>
               </Fragment>
             );
