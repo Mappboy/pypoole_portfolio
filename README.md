@@ -8,5 +8,4 @@ Originally from the Mate Starter.
 - [ ] Add ToolBox Page
 - [ ] Add Public Disservice page
 - [ ] Fix Link hover
-- [ ] Google Sheets config to .env
 - [ ] Fix SEO for Pages

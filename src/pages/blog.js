@@ -18,7 +18,7 @@ const Background = () => (
   <div>
     <Triangle
       color="backgroundDark"
-      height={['15vh', '10vh']}
+      height={['15vh', '20vh']}
       width={['100vw', '100vw']}
       invertX
     />
