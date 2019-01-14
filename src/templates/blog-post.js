@@ -74,9 +74,9 @@ const StyledLink = styled(Text)`
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   &:hover {
-    color: ${theme.colors.whiteLight},
-    background: ${theme.colors.primaryDark},
-    border: ${theme.colors.primaryLight}
+    color: ${theme.colors.primaryDark};
+    top: -10px;
+    text-shadow: 0 12px 16px rgba(250, 250, 2500, 0.9);
   }
     &:after {
       content: '';

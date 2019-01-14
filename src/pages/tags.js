@@ -65,18 +65,17 @@ const StyledBadge = styled(Badge)`
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   &:hover {
-    color: ${theme.colors.whiteLight},
-    background: ${theme.colors.primaryDark},
-    border: ${theme.colors.primaryLight}
+    color: ${theme.colors.whiteLight};
+    background: ${theme.colors.primaryDark};
+    border: ${theme.colors.primaryLight};
+    top: -10px;
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
   }
   &:hover:after {
     left: 0;
     right: auto;
     width: 100%;
   }
-  ${props =>
-    props.selected &&
-    `border-bottom:  5px solid ${props.theme.colors.primaryLight}`};
 `
 const Container = styled(Flex)`
   min-height: 100vh;
@@ -131,9 +130,7 @@ const Tags = ({pageContext}) => {
 
 Tags.propTypes = {
     pageContext: PropTypes.shape({
-      tags: PropTypes.shape({
-        tagName: PropTypes.string.isRequired
-      })
+      tags: PropTypes.arrayOf(PropTypes.string).isRequired
     }).isRequired,
   };
 
@@ -148,10 +145,8 @@ const TagPage = ({pageContext}) => (
 TagPage.propTypes = {
   pageContext: PropTypes.shape(
     {
-      tags: PropTypes.shape({
-        tagName: PropTypes.string.isRequired
-    }
-      )
+      tags: PropTypes.arrayOf(PropTypes.string
+      ).isRequired
   }
   ).isRequired,
 };
