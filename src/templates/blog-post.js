@@ -23,6 +23,48 @@ import { theme, gradient } from '../theme';
 const TextContainer = styled(Text)`
   margin-bottom:40px;
   width: 100%;
+  blockquote {
+    margin-left: 0;
+    margin-right: 1.6rem;
+    margin-top: 1.6rem;
+    padding-bottom: 0;
+    padding-left: 0.8rem;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 1.6rem;
+    border-left: 0.4rem solid hsla(291, 0%, 18%,0.1);
+    color: hsla(291, 0%, 18%,0.8);
+    font-style: italic;
+  }
+  blockquote p {
+    display: inline;
+  }
+  a {
+    // text-decoration: none;
+    color: ${theme.colors.primaryLight};
+  transition: background 1s;
+  cursor: pointer;
+  transition-property: width;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  &:hover {
+    color: ${theme.colors.primaryDark};
+    top: -10px;
+    text-shadow: 0 12px 16px rgba(250, 250, 2500, 0.9);
+  }
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 0;
+      bottom: -5px;
+      background: ${path(['theme', 'colors', 'secondaryDark'])};
+      height: 5px;
+      transition-property: width;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out;
+    }
+  }
 `;
 
 
