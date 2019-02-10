@@ -134,7 +134,7 @@ return (
           width={[1, 1, 4 / 6]} 
           px={[1, 2, 4]}
         >
-          <div dangerouslySetInnerHTML={{ __html: post.post.childContentfulRichText.html }} />
+          <div dangerouslySetInnerHTML={{ __html: post.post.childMarkdownRemark.html }} />
         </TextContainer>
       </Flex>
     </Section.Container>
@@ -186,8 +186,8 @@ query ($slug: String!) {
         html
       }
     }
-    post {
-      childContentfulRichText {
+    post: article {
+      childMarkdownRemark {
         html
       }
     }

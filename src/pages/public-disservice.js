@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Heading, Box, Text, Flex } from 'rebass';
+import { Heading, Box, Text, Flex, Button } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
+import { PDFDownloadLink, Document, Page, Text as PrintText, View, StyleSheet } from '@react-pdf/renderer';
 
 
 import Fade from 'react-reveal/Fade';
@@ -12,6 +13,13 @@ import ImageSubtitle from '../components/ImageSubtitle';
 import Layout from '../components/Layout';
 import Header from '../components/BlogHeader';
 import Footer from '../components/Footer';
+import { theme } from '../theme';
+
+// TODO Colors for headings
+
+const cardsByCategory = {}
+const projectsByCategory = {}
+
 
 const Container = styled(Box)`
   .headroom--pinned {
@@ -32,6 +40,26 @@ const EllipsisHeading = styled(Heading)`
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
+const DownloadButton = styled(Button)`
+  transition: background 1s;
+  cursor: pointer;
+  transition-property: width;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  &:hover {
+    color: ${theme.colors.whiteLight};
+    background: ${theme.colors.primaryDark};
+    border: ${theme.colors.primaryLight};
+    top: -10px;
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+  }
+  &:hover:after {
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
+`
+
 const Post = ({ name, category, descriptionillustration, effect }) => (
   <Card pb={4} height={[400, 400]}>
     <EllipsisHeading m={3} p={1}>
@@ -39,14 +67,14 @@ const Post = ({ name, category, descriptionillustration, effect }) => (
     </EllipsisHeading>
     {descriptionillustration && 
       (
-      <Box height={[400, 400]} width={[1, 1]} justifyContent='center' >
+      <Flex height={[400, 400]} width={[1, 1]} justifyContent='center' mb={2}>
         <Text height={[1, 1]} width={[0.8]} textAlign='center' justifyContent='center' p={4}>
           {descriptionillustration}
         </Text>
-      </Box>
+      </Flex>
       )
     }
-    <Text p={1} textAlign='center'>{effect}</Text>
+    <Text p={1} mb={5} textAlign='center'>{effect}</Text>
     <ImageSubtitle bg="primaryLight" color="white" x="right" y="bottom">
       {`${category}`}
     </ImageSubtitle>
@@ -64,7 +92,7 @@ const edgeToArray = data => data.edges.map(edge =>
   );
 
 const SectionBox = styled(Box)`
-min-height: 100vh;
+  min-height: 100vh;
   min-width: 320px;
   max-width: 1366px;
   display: flex;
@@ -77,6 +105,8 @@ min-height: 100vh;
   `
 const PD = () => (
   <SectionBox id="Public Diservice">
+    <CardsForPDF />
+    <Heading color='primaryDark' ml={[2,2]}>Cards</Heading>
     <StaticQuery
       query={graphql`
       query googleSheetCardsAll {
@@ -98,7 +128,6 @@ const PD = () => (
       // TODO Sort by Category and Add quantities
       render={({ allGoogleSheetCardsRow }) => {
         const cards = edgeToArray(allGoogleSheetCardsRow);
-        const cardsByCategory = {}
         // window.cards = cards;
         // window.cBC = cardsByCategory;
         cards.forEach(card => {
@@ -111,14 +140,14 @@ const PD = () => (
         return (
             categories.map(category => {
               return (
-                <Section.Container key={category} id={category}>
-                  <Section.Header name={category} label={category} />
+                <Section.Container key={category} id={category} padding='2em 1em'>
+                  <Section.Header name={category} label={category} mb={4} mt={1} />
                   <Flex>
                     <CardContainer id={category} minWidth="300px">
                       {cardsByCategory[category].map((card,i) => {
                         return (
-                          <Fade key={card.id} bottom delay={i * 200}>
-                            <Post key={card.id} {...card} />
+                          <Fade key={card.id} bottom delay={i * 100}>
+                            <Post {...card} />
                           </Fade>
                         )
                       //     [...Array(Number.parseInt(card.quantity))].map(i => {
@@ -142,6 +171,50 @@ const PD = () => (
   </SectionBox>
 );
 
+// Create styles
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'row',
+    backgroundColor: '#FFF'
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+    flexGrow: 1
+  },
+  text: {
+    fontColor: '#000'
+  }
+});
+
+const CardsView = () => {
+  const categories = Object.keys(cardsByCategory)
+  return categories.map(category => {
+    <View style={styles.section}>
+      <PrintText style={styles.text}>{category}</PrintText>
+    </View>
+  }
+  )
+  }
+
+const CardsForPDF = () => (
+  <Flex alignItems='right' flexDirection='row-reverse' mt={[2]} mr={[2]}>
+    <PDFDownloadLink 
+      document={
+        (
+          <Document>
+            <Page size="A4" style={styles.page}>
+              <CardsView />
+            </Page>
+          </Document>
+      )
+    }
+      fileName="public_disservice_cards.pdf"
+    >
+      <DownloadButton bg='primary' color='white' mt={1} justifyContent="left">Download</DownloadButton>
+    </PDFDownloadLink>
+  </Flex>
+);
 
 const PDPage = () => (
   <Layout>

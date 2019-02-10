@@ -16,16 +16,18 @@ const SectionContainer = styled.div`
   flex: 0 1 auto;
   flex-direction: column;
   justify-content: center;
-  padding: 5em 1em;
+  padding: ${props => 
+    props.padding || 
+    '5em 1em'};
   scroll-behavior: smooth;
 `;
 
 const DefaultBackground = () => <div />;
 
-const Container = ({ id, children, Background = DefaultBackground }) => (
+const Container = ({ id, children, Background = DefaultBackground, padding = '' }) => (
   <Section id={id} style={{ position: 'relative' }}>
     <Background />
-    <SectionContainer>{children}</SectionContainer>
+    <SectionContainer padding={padding}>{children}</SectionContainer>
   </Section>
 );
 
@@ -33,11 +35,12 @@ Container.propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   Background: PropTypes.func,
+  padding: PropTypes.string
 };
 
-const Header = ({ name, icon = '', label = ''}) => (
+const Header = ({ name, icon = '', label = '', mb=4}) => (
   <Slide left>
-    <Heading color="secondaryDark" mb={4}>
+    <Heading color="secondaryDark" mb={mb}>
       <LinkAnimated selected>
         {name}
         {icon && (
@@ -54,6 +57,7 @@ Header.propTypes = {
   name: PropTypes.string.isRequired,
   icon: PropTypes.string,
   label: PropTypes.string,
+  mb: PropTypes.number
 };
 
 const HeaderRoute = ({ name, icon = '', label = '', link}) => (

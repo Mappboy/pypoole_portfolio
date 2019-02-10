@@ -1,5 +1,5 @@
 const path = require(`path`)
-"descriptio n"
+"description"
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions  
   const tagPage = path.resolve('src/pages/tags.js');

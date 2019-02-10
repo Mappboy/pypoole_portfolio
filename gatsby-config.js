@@ -1,3 +1,4 @@
+const { INLINES } = require('@contentful/rich-text-types')
 const manifestConfig = require('./manifest-config');
 require('dotenv').config();
 
@@ -7,7 +8,29 @@ const { client_config } = require('./client_secret.js')
 module.exports = {
     plugins: [
       'gatsby-plugin-react-helmet',
-      `@contentful/gatsby-transformer-contentful-richtext`,
+      {
+        resolve: '@contentful/gatsby-transformer-contentful-richtext',
+        options: {
+          renderOptions: {
+            /*
+             * Defines custom html string for each node type like heading, embedded entries etc..
+             */
+            renderNode: {
+              // Example
+              [INLINES.ASSET_HYPERLINK]: node => {
+                return `<img class='custom-asset' src="${
+                  node.data.target.fields.file['en-US'].url
+                }"/>`
+              },
+              [INLINES.EMBEDDED_ENTRY]: node => {
+                return `<div class='custom-entry' />${
+                  node.data.target.fields.name['en-US']
+                }</div>`
+              },
+            },
+          },
+        },
+      },
       `gatsby-transformer-sharp`,
       {
         resolve: `gatsby-plugin-typography`,
