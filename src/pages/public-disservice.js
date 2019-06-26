@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Heading, Box, Text, Flex, Button } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
-import { PDFDownloadLink, Document, Page, Text as PrintText, View, StyleSheet } from '@react-pdf/renderer';
 
 
 import Fade from 'react-reveal/Fade';
@@ -105,7 +104,6 @@ const SectionBox = styled(Box)`
   `
 const PD = () => (
   <SectionBox id="Public Diservice">
-    <CardsForPDF />
     <Heading color='primaryDark' ml={[2,2]}>Cards</Heading>
     <StaticQuery
       query={graphql`
@@ -169,51 +167,6 @@ const PD = () => (
       }}
     />
   </SectionBox>
-);
-
-// Create styles
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'row',
-    backgroundColor: '#FFF'
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1
-  },
-  text: {
-    fontColor: '#000'
-  }
-});
-
-const CardsView = () => {
-  const categories = Object.keys(cardsByCategory)
-  return categories.map(category => {
-    <View style={styles.section}>
-      <PrintText style={styles.text}>{category}</PrintText>
-    </View>
-  }
-  )
-  }
-
-const CardsForPDF = () => (
-  <Flex alignItems='right' flexDirection='row-reverse' mt={[2]} mr={[2]}>
-    <PDFDownloadLink 
-      document={
-        (
-          <Document>
-            <Page size="A4" style={styles.page}>
-              <CardsView />
-            </Page>
-          </Document>
-      )
-    }
-      fileName="public_disservice_cards.pdf"
-    >
-      <DownloadButton bg='primary' color='white' mt={1} justifyContent="left">Download</DownloadButton>
-    </PDFDownloadLink>
-  </Flex>
 );
 
 const PDPage = () => (
