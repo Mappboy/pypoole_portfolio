@@ -20,6 +20,54 @@ import { theme, gradient } from '../theme';
 //   border-bottom: ${path(['theme', 'colors', 'primary'])} 5px solid;
 // `;
 
+const Image = styled.div`
+  margin: auto;
+  position: relative;
+  // box-shadow: ${props => props.theme.shadow.feature.small.default};
+  // transition: ${props => props.theme.transitions.boom.transition};
+  // border-radius: ${props => props.theme.borderRadius.default};
+  min-height: 300px;
+  // img {
+  //   border-radius: ${props => props.theme.borderRadius.default};
+  // }
+  &:hover {
+    // box-shadow: ${props => props.theme.shadow.feature.small.hover};
+    transform: scale(1.04);
+  }
+  a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    // border-radius: ${theme.borderRadius.default};
+    > div {
+      position: static !important;
+    }
+    > div > div {
+      position: static !important;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 5px ${theme.colors.primaryDark};
+    }
+  }
+  flex-basis: 100%;
+  max-width: 100%;
+  width: 100%;
+  @media (max-width: 800px) {
+    flex-basis: 100%;
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 500px) {
+    img { min-height: 300px;
+    }
+  }
+`;
+
+
 const TextContainer = styled(Text)`
   margin-bottom:40px;
   width: 100%;
@@ -92,7 +140,7 @@ const CenterText = styled(Text)`
   color: ${theme.colors.primaryDark};
   z-index: 0;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -142,7 +190,9 @@ return (
   <Layout>
     <Header />
     <Wrapper>
-      <Img fluid={image} />
+      <Image>
+        <Img fluid={image} />
+      </Image>
       <CenterText>
         <Text 
           width={[1, 1, 4 / 6]} 
@@ -152,7 +202,7 @@ return (
         >
           {post.title}
         </Text>
-        <h3>{post.createdAt}</h3>
+        {/* <h3>{post.createdAt}</h3> */}
 
         {post.subtitle && 
           (
