@@ -20,6 +20,7 @@ const SectionContainer = styled.div`
     props.padding || 
     '5em 1em'};
   scroll-behavior: smooth;
+  background: ${props => props.theme.background};
 `;
 
 const DefaultBackground = () => <div />;

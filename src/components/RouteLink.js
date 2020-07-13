@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LinkAnimated from './LinkAnimated';
 
 const RouteLink = ({ onClick, selected, children, dark }) => (
-  <Box ml={[2, 3]} color="background" fontSize={[2, 3]}>
+  <Box ml={[2, 3]} color="secondaryLight" fontSize={[2, 3]}>
     <LinkAnimated onClick={onClick} selected={selected} dark={dark}>
       {children}
     </LinkAnimated>

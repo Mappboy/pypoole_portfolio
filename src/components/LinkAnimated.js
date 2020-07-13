@@ -23,7 +23,7 @@ const LinkAnimated = styled.span`
     right: 0;
     width: 0;
     bottom: -5px;
-    background: ${path(['theme', 'colors', 'secondaryLight'])};
+    background: ${props => props.theme.colors.secondaryDark};
     height: 5px;
     transition-property: width;
     transition-duration: 0.3s;

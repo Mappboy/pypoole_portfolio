@@ -40,7 +40,7 @@ const Image = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    // border-radius: ${theme.borderRadius.default};
+    // border-radius: ${props => props.theme.borderRadius.default};
     > div {
       position: static !important;
     }
@@ -49,7 +49,7 @@ const Image = styled.div`
     }
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 5px ${theme.colors.primaryDark};
+      box-shadow: 0 0 0 5px ${props => props.theme.colors.primaryDark};
     }
   }
   flex-basis: 100%;
@@ -89,14 +89,14 @@ const TextContainer = styled(Text)`
   }
   a {
     // text-decoration: none;
-    color: ${theme.colors.primaryLight};
+    color: ${props => props.theme.colors.primaryLight};
   transition: background 1s;
   cursor: pointer;
   transition-property: width;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   &:hover {
-    color: ${theme.colors.primaryDark};
+    color: ${props => props.theme.colors.primaryDark};
     top: -10px;
     text-shadow: 0 12px 16px rgba(250, 250, 2500, 0.9);
   }
@@ -106,7 +106,7 @@ const TextContainer = styled(Text)`
       right: 0;
       width: 0;
       bottom: -5px;
-      background: ${path(['theme', 'colors', 'secondaryDark'])};
+      background: ${props => props.theme.colors.secondaryDark};
       height: 5px;
       transition-property: width;
       transition-duration: 0.3s;
@@ -137,7 +137,7 @@ const Wrapper = styled.div`
 `;
 
 const CenterText = styled(Text)`
-  color: ${theme.colors.primaryDark};
+  color: ${props => props.theme.colors.primaryDark};
   z-index: 0;
   position: absolute;
   top: 60%;
@@ -164,7 +164,7 @@ const StyledLink = styled(Text)`
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   &:hover {
-    color: ${theme.colors.primaryDark};
+    color: ${props => props.theme.colors.primaryDark};
     top: -10px;
     text-shadow: 0 12px 16px rgba(250, 250, 2500, 0.9);
   }
@@ -174,7 +174,7 @@ const StyledLink = styled(Text)`
       right: 0;
       width: 0;
       bottom: -5px;
-      background: ${path(['theme', 'colors', 'secondaryDark'])};
+      background: ${props => props.theme.colors.secondaryDark};
       height: 5px;
       transition-property: width;
       transition-duration: 0.3s;
@@ -186,7 +186,7 @@ const StyledLink = styled(Text)`
 const BlogPage = ({data}) => {
 const post = data.contentfulBlogPost;
 const image = post.heroImage.fluid;
-return (   
+return (
   <Layout>
     <Header />
     <Wrapper>
@@ -194,8 +194,8 @@ return (
         <Img fluid={image} />
       </Image>
       <CenterText>
-        <Text 
-          width={[1, 1, 4 / 6]} 
+        <Text
+          width={[1, 1, 4 / 6]}
           px={[1, 2, 4]}
           fontWeight='bold'
           fontSize={6}
@@ -204,7 +204,7 @@ return (
         </Text>
         {/* <h3>{post.createdAt}</h3> */}
 
-        {post.subtitle && 
+        {post.subtitle &&
           (
           <Text fontSize={4} dangerouslySetInnerHTML={{ __html:post.subtitle.childMarkdownRemark.html}} />)}
         <Flex>
@@ -218,12 +218,12 @@ return (
             })}
         </Flex>
       </CenterText>
-      
+
     </Wrapper>
     <Section.Container id="home">
       <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
         <TextContainer
-          width={[1, 1, 4 / 6]} 
+          width={[1, 1, 4 / 6]}
           px={[1, 2, 4]}
         >
           <div dangerouslySetInnerHTML={{ __html: post.post.childMarkdownRemark.html }} />

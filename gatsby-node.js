@@ -1,7 +1,7 @@
 const path = require(`path`)
 "description"
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions  
+  const { createPage } = actions
   const tagPage = path.resolve('src/pages/tags.js');
   const tagPosts = path.resolve('src/templates/tag.js');
   const postsByTag = {};
@@ -39,21 +39,23 @@ exports.createPages = ({ graphql, actions }) => {
       throw new Error("No data in GraphQL???")
     }
     result.data.allContentfulBlogPost.edges.forEach(({ node }) => {
-        createPage({        
-            path: `blog/${node.slug}`,        
-            component: path.resolve(`./src/templates/blog-post.js`),        
-            context: {          
-            // Data passed to context is available          
-            // in page queries as GraphQL variables.          
-            slug: `${node.slug}`,        
-            },      
+        createPage({
+            path: `blog/${node.slug}`,
+            component: path.resolve(`./src/templates/blog-post.js`),
+            context: {
+            // Data passed to context is available
+            // in page queries as GraphQL variables.
+            slug: `${node.slug}`,
+            },
     })
-    node.tags.forEach(tag => {
-      if (!postsByTag[tag]) {
-      postsByTag[tag] = [];
+    if (node.tags) {
+      node.tags.forEach(tag => {
+        if (!postsByTag[tag]) {
+          postsByTag[tag] = [];
+        }
+        postsByTag[tag].push(node);
+      })
     }
-    postsByTag[tag].push(node);
-  })
   })
   const tags = Object.keys(postsByTag);
   createPage({

@@ -19,9 +19,39 @@ const colors = {
   secondaryLight: '#FAEAC8',
   secondaryDark: '#84CAA3',
 
-  ternary: '#FDBB0A'
+  ternary: '#FDBB0A',
+  color: 'black'
+
 };
 
+
+// eslint-disable-next-line camelcase
+const night_mode_colors = {
+  whiteBase: '#fff',
+  whiteLight: '#bab9b9',
+  whiteGrey: '#FF5D6462',
+  whiteDark: '#a0afd7',
+
+  blackBase: '#333438',
+  blackLight: '#4b4e57',
+  blackBlue: '#2e3246',
+
+  background: '#363537',
+  backgroundDark: '#6B8096',
+
+  primary: '#FDBB0A',
+  primaryLight: '#619686',
+  primaryDark: '#1F2A40',
+
+  secondary: '#FFAA9F82',
+  secondaryLight: '#FAEAC8',
+  secondaryDark:  '#bab9b9' ,
+
+  color: '#bab9b9',
+  ternary: '#647589',
+  toggleBorder: '#6B8096',
+
+};
 // const shadow = {
 //   card: '0 20px 30px rgba(0, 0, 0, 0.1)',
 //   image: '0 15px 25px rgba(0, 0, 0, 0.1)',
@@ -51,17 +81,25 @@ const gradient = {
 };
 
 
-const theme = {
+const lightModeTheme = {
   colors,
   // fontSizes: [
   //   12, 14, 16, 20, 24, 32, 48, 64
   // ],
 };
 
- 
+const darkModeTheme = {
+  colors: night_mode_colors,
+  // fontSizes: [
+  //   12, 14, 16, 20, 24, 32, 48, 64
+  // ],
+};
+
+
 
 module.exports = {
   colors,
-  theme,
+  lightModeTheme,
   gradient,
+  darkModeTheme
 };

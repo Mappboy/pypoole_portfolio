@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, Flex, Box } from 'rebass';
-import { StaticQuery, graphql } from 'gatsby';
+import {Box, Flex, Text} from 'rebass';
+
+import {graphql, StaticQuery} from 'gatsby';
 import styled from 'styled-components';
-import { path } from 'ramda';
 import Fade from 'react-reveal/Fade';
 import Img from 'gatsby-image';
+import {Button, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+
+import {useSingleModal} from '../contexts/singleModalContext';
 import Section from '../components/Section';
-import { CardContainer, Card } from '../components/Card';
+import {Card, CardContainer} from '../components/Card';
 import SocialLink from '../components/SocialLink';
 import Triangle from '../components/Triangle';
 import ImageSubtitle from '../components/ImageSubtitle';
@@ -55,7 +58,7 @@ const Title = styled(Text)`
   font-weight: 600;
   text-transform: uppercase;
   display: table;
-  border-bottom: ${path(['theme', 'colors', 'primary'])} 5px solid;
+  border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
 const TextContainer = styled.div`
@@ -64,7 +67,8 @@ const TextContainer = styled.div`
   padding: 10px;
   width: 100%;
   width: calc(100% - ${CARD_HEIGHT});
-
+  background: ${props => props.theme.colors.background ? props.theme.colors.background : 'white' };
+  color: ${props => props.theme.colors.color ? props.theme.colors.color : 'white' };
   ${MEDIA_QUERY_SMALL} {
     width: calc(100% - (${CARD_HEIGHT} / 2));
   }
@@ -73,7 +77,7 @@ const TextContainer = styled.div`
 const ImageContainer = styled.div`
   margin: auto;
   width: ${CARD_HEIGHT};
-  color: white
+
   ${MEDIA_QUERY_SMALL} {
     width: calc(${CARD_HEIGHT} / 2);
   }
@@ -105,20 +109,50 @@ const ProjectTag = styled.div`
   }
 `;
 
+
+const { close, toggle, setContent } = useSingleModal();
+const toggleModalWithContent = (cont) => {
+  setContent(cont);
+  toggle();
+};
+
 const Project = ({
   name,
   description,
   projectUrl,
   repositoryUrl,
   type,
+  tech,
   publishedDate,
   logo,
 }) => (
+
   <Card p={0}>
     <Flex style={{ height: CARD_HEIGHT }}>
       <TextContainer>
         <span>
-          <Title my={2} pb={1} fontWeight='bold'>
+          <Title
+            my={2}
+            pb={1}
+            fontWeight='bold'
+            onClick={() =>
+          toggleModalWithContent(() => (
+            <>
+              <ModalHeader>Modal title</ModalHeader>
+              <ModalBody>{tech}</ModalBody>
+              <ModalFooter>
+                <Button color="primary" onClick={() => close()}>
+                  Do Something
+                </Button>
+                {' '}
+                <Button color="secondary" onClick={() => close()}>
+                  Cancel
+                </Button>
+              </ModalFooter>
+            </>
+              ))
+          }
+          >
             {name}
           </Title>
         </span>
@@ -150,7 +184,7 @@ const Project = ({
               />
             </Box>
           </Flex>
-          <ImageSubtitle bg="primaryLight" color="white" y="bottom" x="right">
+          <ImageSubtitle bg="background" color="color" y="bottom" x="right">
             {type}
           </ImageSubtitle>
           <Hide query={MEDIA_QUERY_SMALL}>
@@ -171,6 +205,7 @@ Project.propTypes = {
   repositoryUrl: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   publishedDate: PropTypes.string.isRequired,
+  tech: PropTypes.string.isRequired,
   logo: PropTypes.shape({
     image: PropTypes.shape({
       src: PropTypes.string,
@@ -193,6 +228,7 @@ const Projects = () => (
               repositoryUrl
               publishedDate(formatString: "YYYY")
               type
+              tech
               logo {
                 title
                 image: fluid(maxHeight: 200, quality: 90) {

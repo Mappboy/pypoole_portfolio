@@ -1,29 +1,36 @@
-import React, { Fragment } from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import React, {Fragment} from 'react';
+import {connect} from 'react-redux';
+
+import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import PropTypes from 'prop-types';
-import { ScrollingProvider } from 'react-scroll-section';
+import {ScrollingProvider} from 'react-scroll-section';
 import 'react-tippy/dist/tippy.css';
 import config from 'react-reveal/globals';
-import {theme} from '../theme';
+import {darkModeTheme, lightModeTheme} from '../theme';
 import Helmet from './Helmet';
+import {SingleModalProvider} from "../contexts/singleModalContext";
 
 const GlobalStyle = createGlobalStyle`
   * { box-sizing: border-box; }
 
 body {
   margin: 0;
+    background: ${props => props.theme.colors.background ? props.theme.colors.background : 'white' };
+    color: ${props => props.theme.colors.color ? props.theme.colors.color : 'white' };
 }
 `;
 
 config({ ssrFadeout: true });
 
-const Layout = ({ children }) => (
+const Layout = ({  isDarkMode, children }) => (
   <Fragment>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
+    <GlobalStyle theme={isDarkMode ? darkModeTheme : lightModeTheme} />
+    <ThemeProvider theme={isDarkMode ? darkModeTheme : lightModeTheme}>
       <ScrollingProvider>
         <Helmet />
-        {children}
+        <SingleModalProvider>
+          {children}
+        </SingleModalProvider>
       </ScrollingProvider>
     </ThemeProvider>
   </Fragment>
@@ -31,6 +38,8 @@ const Layout = ({ children }) => (
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  isDarkMode: PropTypes.bool.isRequired
 };
 
-export default Layout;
+
+export default connect(state => ({ isDarkMode: state.app.isDarkMode }), null)(Layout);

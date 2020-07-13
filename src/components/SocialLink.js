@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
 
 const IconLink = styled(Link)`
   transition: color 0.5s;
-  color: ${path(['theme', 'colors', 'primary'])};
+  color: ${props => props.theme.colors.primary};
 
   &:hover {
-    color: ${path(['theme', 'colors', 'primaryLight'])};
+    color: ${props => props.theme.colors.primaryLight};
   }
 `;
 const plain_icons = ["envelope", "globe"]

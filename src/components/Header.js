@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
-import {navigate } from 'gatsby'
+import React, {Fragment} from 'react';
 import Headroom from 'react-headroom';
-import { Flex, Image } from 'rebass';
+import {Box, Flex, Image} from 'rebass';
 import styled from 'styled-components';
-import { SectionLinks } from 'react-scroll-section';
+import {SectionLinks} from 'react-scroll-section';
 import Fade from 'react-reveal/Fade';
 import RouteLink from './RouteLink';
 import Logo from './Logo/Mammoth.svg';
+import DarkModeToggle from "./DarkModeToggle";
 
 const capitalize = s => s && s[0].toUpperCase() + s.slice(1);
 
@@ -14,7 +14,7 @@ const HeaderContainer = styled(Headroom)`
   .headroom--pinned {
     background: ${props => props.theme.colors.primaryDark};
   }
-
+  
   position: absolute;
   width: 100%;
 `;
@@ -72,6 +72,9 @@ const Header = () => (
                 {homeLink}
                 <Flex mr={[0, 3, 5]}>
                   {navLinks}
+                  <Box ml={[2, 3]}>
+                    <DarkModeToggle />
+                  </Box>
                 </Flex>
               </Fragment>
             );

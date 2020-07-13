@@ -95,5 +95,7 @@ module.exports = {
       },
       'gatsby-transformer-remark',
       'gatsby-plugin-offline',
+      'gatsby-plugin-netlify',
+      'gatsby-plugin-dark-mode'
     ],
   };

@@ -65,9 +65,9 @@ const StyledBadge = styled(Badge)`
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   &:hover {
-    color: ${theme.colors.whiteLight};
-    background: ${theme.colors.primaryDark};
-    border: ${theme.colors.primaryLight};
+    color: ${props => props.theme.colors.whiteLight};
+    background: ${props => props.theme.colors.primaryDark};
+    border: ${props => props.theme.colors.primaryLight};
     top: -10px;
     box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
   }
@@ -90,7 +90,7 @@ const Container = styled(Flex)`
 const Tags = ({pageContext}) => {
   const { tags } = pageContext
   return (
-    
+
     <Container id="tags" flexDirection='col'>
       <Background />
       <Box mt={5} p={3}>
@@ -106,7 +106,7 @@ const Tags = ({pageContext}) => {
         </LightSpeed>
       </Box>
       <Box mt={5}>
-        <Flex 
+        <Flex
           flexDirection='row'
           flexWrap='wrap'
           justifyContent='center'
