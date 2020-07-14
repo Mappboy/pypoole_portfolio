@@ -30,7 +30,6 @@ const Background = () => (
 );
 
 const NotFoundPage = () => (
-  <Layout>
     <Section.Container id="404" Background={Background}>
       <Box width={[320, 400, 600]} m="auto">
         <Heading color="primaryDark" fontSize={['9rem', '13rem', '16rem']}>
@@ -41,7 +40,6 @@ const NotFoundPage = () => (
         </Heading>
       </Box>
     </Section.Container>
-  </Layout>
 );
 
 export default NotFoundPage;

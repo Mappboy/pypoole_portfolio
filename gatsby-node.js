@@ -1,5 +1,4 @@
 const path = require(`path`)
-"description"
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const tagPage = path.resolve('src/pages/tags.js');
@@ -66,16 +65,18 @@ exports.createPages = ({ graphql, actions }) => {
     },
   });
   tags.forEach(tagName => {
-    const posts = postsByTag[tagName];
+    if (tagName) {
+      const posts = postsByTag[tagName];
 
-    createPage({
-      path: `/tags/${tagName}`,
-      component: tagPosts,
-      context: {
-        posts,
-        tagName,
-      },
-    });
+      createPage({
+        path: `/tags/${tagName}`,
+        component: tagPosts,
+        context: {
+          posts,
+          tagName,
+        },
+      })
+    };
   });
 })
 }

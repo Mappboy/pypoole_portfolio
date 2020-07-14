@@ -96,10 +96,25 @@ const darkModeTheme = {
 };
 
 
+const techColors = {
+  'VUEJS':'#42b883',
+  'REACT':'#00d8ff',
+  'FLASK':'#990303',
+  'POSTGIS':'#336791',
+  'POSTGRES':'#336791',
+  'GATSBY':'#542c85',
+  'GRIDSOME': '#00835c',
+  'NETLIFY': '#146396',
+  'DRUPAL':'#0678be',
+  'OAUTH2.0':'#eb5424',
+  'BOOTSTRAP':'#7952b3',
+  'PHP':'#8892bf'
+}
 
 module.exports = {
   colors,
   lightModeTheme,
   gradient,
-  darkModeTheme
+  darkModeTheme,
+  techColors
 };

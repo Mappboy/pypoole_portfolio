@@ -86,7 +86,7 @@ Post.propTypes = {
   createdAt: PropTypes.string.isRequired,
   readingTime: PropTypes.number.isRequired,
 };
-const edgeToArray = data => data.edges.map(edge => 
+const edgeToArray = data => data.edges.map(edge =>
     edge.node
   );
 
@@ -137,11 +137,11 @@ const Writing = () => (
 
 
 const BlogPage = () => (
-  <Layout>
+  <>
     <Header />
     <Writing />
     <Footer />
-  </Layout>
+  </>
 );
 
 export default BlogPage;

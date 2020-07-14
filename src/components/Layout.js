@@ -1,14 +1,16 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 
-import {createGlobalStyle, ThemeProvider} from 'styled-components';
+import {createGlobalStyle, ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
 import {ScrollingProvider} from 'react-scroll-section';
 import 'react-tippy/dist/tippy.css';
 import config from 'react-reveal/globals';
 import {darkModeTheme, lightModeTheme} from '../theme';
 import Helmet from './Helmet';
-import {SingleModalProvider} from "../contexts/singleModalContext";
+import {useSingleModal} from "../contexts/singleModalContext";
+import {SingleModal} from "./Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const GlobalStyle = createGlobalStyle`
   * { box-sizing: border-box; }
@@ -20,21 +22,28 @@ body {
 }
 `;
 
+
 config({ ssrFadeout: true });
 
-const Layout = ({  isDarkMode, children }) => (
-  <Fragment>
-    <GlobalStyle theme={isDarkMode ? darkModeTheme : lightModeTheme} />
-    <ThemeProvider theme={isDarkMode ? darkModeTheme : lightModeTheme}>
-      <ScrollingProvider>
-        <Helmet />
-        <SingleModalProvider>
+const Layout = ({  isDarkMode, children }) => {
+  const { show, toggle, content } = useSingleModal();
+
+  return (
+    <Fragment>
+      <GlobalStyle theme={isDarkMode ? darkModeTheme : lightModeTheme} />
+      <ThemeProvider theme={isDarkMode ? darkModeTheme : lightModeTheme}>
+        <ScrollingProvider>
+          <Helmet />
           {children}
-        </SingleModalProvider>
-      </ScrollingProvider>
-    </ThemeProvider>
-  </Fragment>
-);
+          <SingleModal isOpen={show} toggle={() => toggle()} unmountOnClose={false}>
+            {content}
+          </SingleModal>
+        </ScrollingProvider>
+      </ThemeProvider>
+    </Fragment>
+)
+}
+
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

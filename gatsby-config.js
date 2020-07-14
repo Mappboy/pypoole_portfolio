@@ -49,14 +49,14 @@ module.exports = {
         options: manifestConfig,
       },
       'gatsby-plugin-styled-components',
-      {
-        resolve: 'gatsby-source-google-sheets',
-        options: {
-            spreadsheetId: '16yxrlTSXQqHBAVXlUrRW8oxwCtuEDekdVirzZU7D_XI',
-            worksheetTitle: 'Cards',
-            credentials: client_config
-        }
-    },
+    //   {
+    //     resolve: 'gatsby-source-google-sheets',
+    //     options: {
+    //         spreadsheetId: '16yxrlTSXQqHBAVXlUrRW8oxwCtuEDekdVirzZU7D_XI',
+    //         worksheetTitle: 'Cards',
+    //         credentials: client_config
+    //     }
+    // },
     {
       resolve: 'gatsby-source-google-sheets',
       options: {
@@ -75,7 +75,7 @@ module.exports = {
       //   resolve: `gatsby-plugin-prefetch-google-fonts`,
       //   options: {
       //     fonts: [
-      //       {family:`cabin`}, 
+      //       {family:`cabin`},
       //       {family:`Open Sans`}
       //     ],
       //   },
@@ -96,6 +96,7 @@ module.exports = {
       'gatsby-transformer-remark',
       'gatsby-plugin-offline',
       'gatsby-plugin-netlify',
-      'gatsby-plugin-dark-mode'
+      'gatsby-plugin-dark-mode',
+      // 'gatsby-plugin-theme-ui'
     ],
   };

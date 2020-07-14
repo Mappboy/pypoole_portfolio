@@ -136,11 +136,11 @@ Tags.propTypes = {
 
 
 const TagPage = ({pageContext}) => (
-  <Layout>
+  <>
     <Header />
     <Tags pageContext={pageContext} />
     <Footer />
-  </Layout>
+  </>
 );
 TagPage.propTypes = {
   pageContext: PropTypes.shape(
