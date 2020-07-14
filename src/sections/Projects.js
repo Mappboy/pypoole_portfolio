@@ -9,6 +9,7 @@ import Img from 'gatsby-image';
 
 import {ModalBody, ModalHeader, ModalFooter, Badge} from 'reactstrap';
 import {connect} from "react-redux";
+import hash from "hash-it";
 import Section from '../components/Section';
 import {Card, CardContainer} from '../components/Card';
 import SocialLink from '../components/SocialLink';
@@ -17,7 +18,6 @@ import ImageSubtitle from '../components/ImageSubtitle';
 import Hide from '../components/Hide';
 import {useSingleModal} from "../contexts/singleModalContext";
 import {techColors} from "../theme";
-import hash from "hash-it";
 
 
 const Background = () => (
@@ -138,6 +138,10 @@ const ProjectModal = styled.div`
 const getColor = (props) => (
   techColors[props.text.toUpperCase().trim().replace(' ', '')] || Object.values(props.theme.colors)[props.theme.colors.length % hash(props.text)]
 )
+
+const edgeToArray = data => data.edges.map(edge =>
+  edge.node
+);
 
 const StyleBadge = styled(Badge)`
 background: ${props => getColor(props)}
@@ -278,18 +282,18 @@ const Projects = () => (
     <StaticQuery
       query={graphql`
         query ProjectsQuery {
-          contentfulAbout {
-            projects {
-              id
-              name
-              description
-              projectUrl
-              repositoryUrl
-              publishedDate(formatString: "YYYY")
-              type
-              tech
-              logo {
-                title
+            allContentfulProject(sort: {order: DESC, fields: publishedDate}) {
+              edges {
+                node {
+                  id
+                name
+                description
+                projectUrl
+                repositoryUrl
+                publishedDate(formatString: "YYYY")
+                type
+                tech
+                logo {
                 image: fluid(maxHeight: 200, quality: 90) {
                   ...GatsbyContentfulFluid_withWebp
                 }
@@ -300,16 +304,20 @@ const Projects = () => (
             }
           }
         }
+        }
       `}
-      render={({contentfulAbout}) => (
-        <CardContainer minWidth="350px">
-          {contentfulAbout.projects.map((p, i) => (
-            <Fade bottom delay={i * 200} key={p.id}>
-              <Project key={p.id} {...p}  />
-            </Fade>
+      render={({allContentfulProject}) => {
+        const projects = edgeToArray(allContentfulProject)
+        return (
+          <CardContainer minWidth="350px">
+            {projects.map((p, i) => (
+              <Fade bottom delay={i * 200} key={p.id}>
+                <Project key={p.id} {...p}  />
+              </Fade>
             ))}
-        </CardContainer>
+          </CardContainer>
         )}
+      }
     />
   </Section.Container>
   );
