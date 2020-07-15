@@ -3,11 +3,12 @@ import { Modal } from 'reactstrap';
 class SingleModal extends Modal {
   constructor(props) {
     super(props);
-
-    this._element = document.getElementById('single-modal');
-    this._element.setAttribute('tabindex', '-1');
-    this._element.style.position = 'relative';
-    this._element.style.zIndex = this.props.zIndex;
+    if (typeof window !== 'undefined') {
+      this._element = document.getElementById('single-modal');
+      this._element.setAttribute('tabindex', '-1');
+      this._element.style.position = 'relative';
+      this._element.style.zIndex = this.props.zIndex;
+    }
   }
 
   componentWillUnmount() {
