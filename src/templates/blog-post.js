@@ -4,34 +4,22 @@ import PropTypes from 'prop-types';
 import {  Flex, Text, Box } from 'rebass';
 import styled from 'styled-components';
 import Img  from 'gatsby-image';
-import { path } from 'ramda';
 import Section from '../components/Section';
 import Layout from '../components/Layout';
 import Header from '../components/BlogHeader';
 import Footer from '../components/Footer';
-import { theme, gradient } from '../theme';
+import { gradient } from '../theme';
 
 
-// const Title = styled(Text)`
-//   font-size: 14px;
-//   font-weight: 600;
-//   text-transform: uppercase;
-//   display: table;
-//   border-bottom: ${path(['theme', 'colors', 'primary'])} 5px solid;
-// `;
 
 const Image = styled.div`
   margin: auto;
   position: relative;
-  // box-shadow: ${props => props.theme.shadow.feature.small.default};
-  // transition: ${props => props.theme.transitions.boom.transition};
-  // border-radius: ${props => props.theme.borderRadius.default};
+  box-shadow: ${props => props.theme.shadow.feature.small.default};
   min-height: 300px;
-  // img {
-  //   border-radius: ${props => props.theme.borderRadius.default};
-  // }
+
   &:hover {
-    // box-shadow: ${props => props.theme.shadow.feature.small.hover};
+    box-shadow: ${props => props.theme.shadow.feature.small.hover};
     transform: scale(1.04);
   }
   a {
@@ -40,7 +28,6 @@ const Image = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    // border-radius: ${props => props.theme.borderRadius.default};
     > div {
       position: static !important;
     }
