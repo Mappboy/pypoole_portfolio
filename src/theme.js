@@ -39,12 +39,12 @@ const night_mode_colors = {
   background: '#363537',
   backgroundDark: '#6B8096',
 
-  primary: '#FDBB0A',
-  primaryLight: '#619686',
+  primary: '#e43f5a',
+  primaryLight: '#ffbd69',
   primaryDark: '#1F2A40',
 
-  secondary: '#FFAA9F82',
-  secondaryLight: '#FAEAC8',
+  secondary: '#1f4068',
+  secondaryLight: '#1f4068',
   secondaryDark:  '#bab9b9' ,
 
   color: '#bab9b9',
