@@ -8,3 +8,5 @@ Originally from the [EmaSuriano gatsby-starter-mate](https://github.com/EmaSuria
 - [ ] Add Public Disservice page
 - [ ] Fix Link hover
 - [ ] Fix SEO for Pages
+- [ ] Update Cypress testing
+- [ ] Update readme
