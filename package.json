@@ -46,6 +46,7 @@
     "clean-dir": "^1.0.3",
     "contentful": "^7.14.5",
     "deepmerge": "^4.2.2",
+    "dotenv": "^8.2.0",
     "envfile": "^3.1.0",
     "gatsby": "^2.24.2",
     "gatsby-image": "^2.4.13",
@@ -95,12 +96,12 @@
     "yargs-parser": "^11.0.0"
   },
   "devDependencies": {
+    "@percy/cypress": "^2.1.1",
     "axe-core": "^3.5.5",
     "babel-eslint": "^10.1.0",
     "contentful-import": "^7.8.7",
     "cypress": "^4.10.0",
     "cypress-axe": "^0.8.1",
-    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^3.6.0",
