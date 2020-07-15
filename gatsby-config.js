@@ -48,7 +48,7 @@ module.exports = {
         resolve: 'gatsby-plugin-manifest',
         options: manifestConfig,
       },
-      // 'gatsby-plugin-styled-components',
+      'gatsby-plugin-styled-components',
     //   {
     //     resolve: 'gatsby-source-google-sheets',
     //     options: {
