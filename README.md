@@ -1,11 +1,12 @@
 # PyPoole Portfolio
 
 Blog and Portfolio built using Gatsby and Contentful.
-Originally from the Mate Starter.
+Originally from the [EmaSuriano gatsby-starter-mate](https://github.com/EmaSuriano/gatsby-starter-mate.)
 
 # TODOS
-- [ ] Refactor blog post and tag code to make use of components
 - [ ] Add ToolBox Page
 - [ ] Add Public Disservice page
 - [ ] Fix Link hover
 - [ ] Fix SEO for Pages
+- [ ] Update Cypress testing
+- [ ] Update readme
