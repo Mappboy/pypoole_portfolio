@@ -1,7 +1,9 @@
 const path = require(`path`)
+const chalk = require('chalk');
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  const tagPage = path.resolve('src/pages/tags.js');
+  const tagPage = path.resolve('src/templates/tags.js');
   const tagPosts = path.resolve('src/templates/tag.js');
   const postsByTag = {};
   return graphql(`
@@ -49,7 +51,7 @@ exports.createPages = ({ graphql, actions }) => {
     })
     if (node.tags) {
       node.tags.forEach(tag => {
-        if (!postsByTag[tag]) {
+        if (tag && !postsByTag[tag]) {
           postsByTag[tag] = [];
         }
         postsByTag[tag].push(node);
@@ -65,9 +67,10 @@ exports.createPages = ({ graphql, actions }) => {
     },
   });
   tags.forEach(tagName => {
-    if (tagName) {
+    if (tagName && tagName.trim()) {
       const posts = postsByTag[tagName];
 
+      console.log(`${chalk.green(`Created tag ${tagName}`)}`)
       createPage({
         path: `/tags/${tagName}`,
         component: tagPosts,

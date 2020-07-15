@@ -2,18 +2,14 @@
 import React from 'react';
 import {  navigate } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Flex, Card, Heading, Box } from 'rebass';
+import {Flex, Card, Heading, Box, Text} from 'rebass';
 import styled from 'styled-components';
 
 import { LightSpeed, Fade } from 'react-reveal';
 import Triangle from '../components/Triangle';
-import Layout from '../components/Layout';
 import Header from '../components/BlogHeader';
 import Footer from '../components/Footer';
-import Section from '../components/Section';
 import LinkAnimated from '../components/LinkAnimated';
-
-import { theme } from '../theme';
 
 
 const Background = () => (
@@ -64,6 +60,8 @@ const StyledBadge = styled(Badge)`
   transition-property: width;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
+  color: ${props => props.theme.colors.primary};
+  background: ${props => props.theme.colors.secondary};
   &:hover {
     color: ${props => props.theme.colors.whiteLight};
     background: ${props => props.theme.colors.primaryDark};
@@ -99,7 +97,7 @@ const Tags = ({pageContext}) => {
             <LinkAnimated selected>
               Tags
               <span role="img" aria-label='tags' style={{ marginLeft: '10px' }} alt='Tags'>
-              🏷️
+                🏷️
               </span>
             </LinkAnimated>
           </Heading>
@@ -117,7 +115,7 @@ const Tags = ({pageContext}) => {
             return (
               <Fade key={tagName}>
                 <StyledBadge onClick={() => navigate(`/tags/${tagName}`)}>
-                  {upperTag}
+                  <Text fontSize={[ 3, 3, 3 ]} fontWeight="bold"> {upperTag} </Text>
                 </StyledBadge>
               </Fade>
             )

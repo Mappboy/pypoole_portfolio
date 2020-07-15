@@ -14,10 +14,12 @@ export const CardContainer = styled.div`
   @media only screen and (max-width: 400px) {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
+  background: ${props => props.theme.colors.background ? props.theme.colors.background : 'white' };
+  color: ${props => props.theme.colors.color ? props.theme.colors.color : 'white' };
 `;
 
 export const Card = styled(CardRebass).attrs({
-  bg: 'white',
+  bg: 'background',
   boxShadow: 0,
   borderRadius: 8,
 })`

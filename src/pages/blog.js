@@ -10,7 +10,6 @@ import Section from '../components/Section';
 import { CardContainer, Card } from '../components/Card';
 import Triangle from '../components/Triangle';
 import ImageSubtitle from '../components/ImageSubtitle';
-import Layout from '../components/Layout';
 import Header from '../components/BlogHeader';
 import Footer from '../components/Footer';
 
@@ -91,8 +90,8 @@ const edgeToArray = data => data.edges.map(edge =>
   );
 
 const Writing = () => (
-  <Section.Container id="articles" Background={Background}>
-    <Section.Header name="Articles" icon="✍️" label="writing" />
+  <Section.Container id="writing" Background={Background}>
+    <Section.Header name="Writing" icon="✍️" label="writing" />
     <StaticQuery
       query={graphql`
       query BlogPostQueryAll {

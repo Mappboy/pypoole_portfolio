@@ -54,15 +54,15 @@ const EllipsisHeading = styled(Heading)`
 `;
 
 const Post = ({ title, text, heroImage, slug, createdAt, readingTime }) => (
-  <Card onClick={() => navigate(`blog/${slug}`)} pb={4} bg="white" minWidth="350px">
+  <Card onClick={() => navigate(`blog/${slug}`)} pb={4} minWidth="350px">
     <EllipsisHeading m={3} p={1}>
       {title}
     </EllipsisHeading>
     {heroImage && <CoverImage fluid={heroImage.image} height="200px" alt={heroImage.description} />}
     {text && (
     <Box m={3}>
-      <div 
-        dangerouslySetInnerHTML={{__html: text.childContentfulRichText.html}} 
+      <div
+        dangerouslySetInnerHTML={{__html: text.childContentfulRichText.html}}
       />
     </Box>
     )}
@@ -90,7 +90,7 @@ Post.propTypes = {
   createdAt: PropTypes.string.isRequired,
   readingTime: PropTypes.number.isRequired,
 };
-const edgeToArray = data => data.edges.map(edge => 
+const edgeToArray = data => data.edges.map(edge =>
     edge.node
   );
 
@@ -137,7 +137,7 @@ const Writing = () => (
         );
       }}
     />
-    <Section.HeaderRoute name="All Articles >" icon="📰" label="all_articles" link='blog' mt={3} />
+    <Section.HeaderRoute name="All Posts >" icon="📰" label="all_posts" link='blog' mt={3} />
   </Section.Container>
 );
 
