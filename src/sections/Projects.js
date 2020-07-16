@@ -135,22 +135,29 @@ const ProjectModal = styled.div`
   }
 `;
 
-const getColor = (props) => (
-  techColors[props.text.toUpperCase().trim().replace(' ', '')] || Object.values(props.theme.colors)[props.theme.colors.length % hash(props.text)]
-)
+const getColor = (props) => {
+  const cleanText = props.text.toUpperCase().trim().replace(' ', '')
+  const hashText = hash(cleanText)
+  const colorArray = Object.values(props.theme.colors)
+  const existingColor = techColors[cleanText]
+  const randomColor = colorArray[hashText % colorArray.length]
+  return existingColor || randomColor
+}
 
 const edgeToArray = data => data.edges.map(edge =>
   edge.node
 );
 
 const StyleBadge = styled(Badge)`
-background: ${props => getColor(props)}
+background: ${props => getColor(props)};
+border-radius: 9999;
 `
 
 
 
 const Project = ({
   name,
+  fullDescription,
   description,
   projectUrl,
   repositoryUrl,
@@ -174,8 +181,7 @@ const Project = ({
           <ProjectModal>
             <ModalHeader>{name}</ModalHeader>
             <ModalBody>
-              <Text width={[1]} style={{ overflow: 'auto' }}>
-                {description}
+              <Text width={[1]} style={{ overflow: 'auto' }} dangerouslySetInnerHTML={{ __html:fullDescription.childMarkdownRemark.html}} >
               </Text>
               <ModalImage fluid={logo.imageModal} alt={logo.title} />
               <Flex direction="row">
@@ -183,10 +189,9 @@ const Project = ({
                 {tech.map(text => (
                   <StyleBadge
                     key={text}
-                    borderRadius={9999}
                     fontWeight='bold'
-                    pill
                     text={text}
+                    pill
                   >
                     {text}
                   </StyleBadge>
@@ -260,11 +265,14 @@ const Project = ({
 Project.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  fullDescription: PropTypes.shape( {childMarkdownRemark: PropTypes.shape(
+  {html: PropTypes.string}
+  )}),
   projectUrl: PropTypes.string.isRequired,
   repositoryUrl: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   publishedDate: PropTypes.string.isRequired,
-  tech: PropTypes.string.isRequired,
+  tech: PropTypes.arrayOf(PropTypes.string),
   logo: PropTypes.shape({
     title: PropTypes.string,
     image: PropTypes.shape({
@@ -288,6 +296,7 @@ const Projects = () => (
                   id
                 name
                 description
+                fullDescription { childMarkdownRemark { html } }
                 projectUrl
                 repositoryUrl
                 publishedDate(formatString: "YYYY")

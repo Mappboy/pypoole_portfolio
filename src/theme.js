@@ -99,18 +99,29 @@ const darkModeTheme = {
 
 
 const techColors = {
-  'VUEJS':'#42b883',
-  'REACT':'#00d8ff',
+  'BOOTSTRAP':'#7952b3',
+  'DATOCMS':'#674c64',
+  'DJANGO':'#0c4b33',
+  'DRF':'#a30000',
+  'DRUPAL':'#0678be',
+  'FASTAPI':'#57a75e',
   'FLASK':'#990303',
+  'FME':'#f36c00',
+  'GATSBY':'#542c85',
+  'GRAPHQL':'#e535ab',
+  'GRIDSOME': '#00835c',
+  'MAPBOX':'#4264fb',
+  'NETLIFY': '#146396',
+  'NUXT':'#2f495e',
+  'OAUTH2.0':'#eb5424',
+  'PHP':'#8892bf',
   'POSTGIS':'#336791',
   'POSTGRES':'#336791',
-  'GATSBY':'#542c85',
-  'GRIDSOME': '#00835c',
-  'NETLIFY': '#146396',
-  'DRUPAL':'#0678be',
-  'OAUTH2.0':'#eb5424',
-  'BOOTSTRAP':'#7952b3',
-  'PHP':'#8892bf'
+  'POSTGRESQL':'#336791',
+  'REACT':'#00d8ff',
+  'TORTOISE-ORM':'#57a75e',
+  'VUE':'#42b883',
+  'VUEJS':'#42b883'
 }
 
 module.exports = {

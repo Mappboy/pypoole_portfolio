@@ -88,6 +88,22 @@ module.exports = {
         },
       },
       {
+        resolve: `gatsby-source-git`,
+        options: {
+          name: 'til',
+          remote: `https://github.com/Mappboy/til.git`,
+          patterns: [`**/*.md`, '!*README.md']
+        }
+      },
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          name: `data`,
+          path: `${__dirname}/src/data/`,
+          ignore: [`**/\.*`], // ignore files starting with a dot
+        },
+      },
+      {
         resolve: 'gatsby-plugin-html-attributes',
         options: {
           lang: 'en'
