@@ -183,7 +183,8 @@ const Project = ({
             <ModalBody>
               <Text width={[1]} style={{ overflow: 'auto' }} dangerouslySetInnerHTML={{ __html:fullDescription.childMarkdownRemark.html}} >
               </Text>
-              <ModalImage fluid={logo.imageModal} alt={logo.title} />
+              <ModalImage fluid={logo.imageModal} alt={logo.title} loading="lazy"
+              />
               <Flex direction="row">
                 <Text fontWeight='bold'>Tech: </Text>
                 {tech.map(text => (
@@ -224,7 +225,7 @@ const Project = ({
           </TextContainer>
 
           <ImageContainer>
-            <ProjectImage fluid={logo.image} alt={logo.title} />
+            <ProjectImage fluid={logo.image} alt={logo.title} loading="lazy"/>
             <ProjectTag>
               <Flex
                 style={{

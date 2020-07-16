@@ -6,6 +6,15 @@ const { ACCESS_TOKEN, SPACE_ID } = process.env;
 const { client_config } = require('./client_secret.js')
 
 module.exports = {
+  siteMetadata: {
+    title: `PyPoole`,
+    author: `Cameron`,
+    email: `Cameron.j.poole@gmail.com`,
+    siteUrl: `https://www.pypoole.com`,
+    description: `Thoughts from Cameron Poole`,
+    image: "/media/icon.jpg", // Path to your image you placed in the 'static' folder
+    twitterUsername: "@cpoolerun",
+  },
     plugins: [
       'gatsby-plugin-react-helmet',
       {
@@ -57,14 +66,14 @@ module.exports = {
     //         credentials: client_config
     //     }
     // },
-    {
-      resolve: 'gatsby-source-google-sheets',
-      options: {
-          spreadsheetId: '16yxrlTSXQqHBAVXlUrRW8oxwCtuEDekdVirzZU7D_XI',
-          worksheetTitle: 'Projects',
-          credentials: client_config
-      }
-  },
+    //   {
+    //     resolve: 'gatsby-source-google-sheets',
+    //     options: {
+    //         spreadsheetId: '16yxrlTSXQqHBAVXlUrRW8oxwCtuEDekdVirzZU7D_XI',
+    //         worksheetTitle: 'Projects',
+    //         credentials: client_config
+    //     }
+    // },
       //   {
       //   resolve: `gatsby-plugin-google-fonts`,
       //   options: {
@@ -120,65 +129,33 @@ module.exports = {
       'gatsby-plugin-offline',
       'gatsby-plugin-netlify',
       'gatsby-plugin-dark-mode',
-      {
-        resolve: '@fec/gatsby-plugin-advanced-feed',
-        options: {
-          feeds: [
-            {
-              // Configure the feed; smart defaults are choosen if not set
-              author: undefined,      // default: site.siteMetadata.author
-              copyright: undefined,   // default: "All rights reserved {year}, {site.siteMetadata.author}"
-              description: undefined, // default: site.siteMetadata.description
-              email: false,           // default: false ➞ no email in feed; undefined ➞ site.siteMetadata.email
-              id: undefined,          // default: site.siteMetadata.siteUrl
-              link: undefined,        // default: site.siteMetadata.siteUrl
-              title: undefined,       // default: site.siteMetadata.title
-
-              // Add <link> tags in <head> to feeds
-              createLinkInHead: true, // `true` for all pages or regular expression to match pathnames
-
-              // Number of articles to include in feed
-              limit: 10,
-
-              // Include all pages which `fileAbsolutePath` matches this regular expression
-              match: '^/blog/',
-
-              // File names of generated feeds
-              output: {
-                rss2: 'rss.xml',
-                atom: 'atom.xml',
-                json: 'feed.json',
-              },
-            },
-            {
-              // Configure the feed; smart defaults are choosen if not set
-              author: undefined,      // default: site.siteMetadata.author
-              copyright: undefined,   // default: "All rights reserved {year}, {site.siteMetadata.author}"
-              description: undefined, // default: site.siteMetadata.description
-              email: false,           // default: false ➞ no email in feed; undefined ➞ site.siteMetadata.email
-              id: undefined,          // default: site.siteMetadata.siteUrl
-              link: undefined,        // default: site.siteMetadata.siteUrl
-              title: undefined,       // default: site.siteMetadata.title
-
-              // Add <link> tags in <head> to feeds
-              createLinkInHead: true, // `true` for all pages or regular expression to match pathnames
-
-              // Number of articles to include in feed
-              limit: 10,
-
-              // Include all pages which `fileAbsolutePath` matches this regular expression
-              match: '^/til/',
-
-              // File names of generated feeds
-              output: {
-                rss2: 'rss-til.xml',
-                atom: 'atom-til.xml',
-                json: 'feed-til.json',
-              },
-            }
-          ],
-        }
-      }
-      // 'gatsby-plugin-theme-ui'
+      // {
+      //   resolve: '@fec/gatsby-plugin-advanced-feed',
+      //   options: {
+      //     feeds: [
+      //       {
+      //         // Configure the feed; smart defaults are choosen if not set
+      //         description: "PyPoole Blog TILs", // default: site.siteMetadata.description
+      //
+      //
+      //         // Add <link> tags in <head> to feeds
+      //         createLinkInHead: true, // `true` for all pages or regular expression to match pathnames
+      //
+      //         // Number of articles to include in feed
+      //         limit: 10,
+      //
+      //         // Include all pages which `fileAbsolutePath` matches this regular expression
+      //         match: '^/til/',
+      //
+      //         // File names of generated feeds
+      //         output: {
+      //           rss2: 'rss-til.xml',
+      //           atom: 'atom-til.xml',
+      //           json: 'feed-til.json',
+      //         },
+      //       }
+      //     ],
+      //   }
+      // }
     ],
   };
