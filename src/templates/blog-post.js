@@ -185,7 +185,7 @@ return (
           width={[1, 1, 4 / 6]}
           px={[1, 2, 4]}
           fontWeight='bold'
-          fontSize={6}
+          fontSize={[4 ,5, 6]}
         >
           {post.title}
         </Text>
@@ -193,7 +193,7 @@ return (
 
         {post.subtitle &&
           (
-          <Text fontSize={4} dangerouslySetInnerHTML={{ __html:post.subtitle.childMarkdownRemark.html}} />)}
+          <Text fontSize={5} dangerouslySetInnerHTML={{ __html:post.subtitle.childMarkdownRemark.html}} />)}
         <Flex>
           {post.tags && post.tags.map((tagName, index) => {
               const upperTag = tagName.charAt(0).toUpperCase() + tagName.slice(1);
@@ -208,12 +208,12 @@ return (
 
     </Wrapper>
     <Section.Container id="home">
-      <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
+      <Flex justifyContent="center" alignItems="center" textAlign="justify" flexWrap="wrap">
         <TextContainer
           width={[1, 1, 4 / 6]}
           px={[1, 2, 4]}
         >
-          <div dangerouslySetInnerHTML={{ __html: post.post.childMarkdownRemark.html }} />
+          <Text fontSize={[1 , 1, 1]} dangerouslySetInnerHTML={{ __html: post.post.childMarkdownRemark.html }} />
         </TextContainer>
       </Flex>
     </Section.Container>
