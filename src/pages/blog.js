@@ -54,7 +54,7 @@ const EllipsisHeading = styled(Heading)`
 `;
 
 const Post = ({ title, text, heroImage, slug, createdAt, readingTime }) => (
-  <Card onClick={() => navigate(`blog/${slug}`)} pb={4}>
+  <Card onClick={() => navigate(`${slug}`)} pb={4}>
     <EllipsisHeading m={3} p={1}>
       {title}
     </EllipsisHeading>
