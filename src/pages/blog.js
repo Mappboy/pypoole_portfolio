@@ -71,7 +71,7 @@ const Post = ({ title, text, heroImage, slug, createdAt, readingTime }) => (
 Post.propTypes = {
   title: PropTypes.string.isRequired,
   text: PropTypes.shape({
-    childMarkdownRemark: PropTypes.shape(
+    childContentfulRichText: PropTypes.shape(
       {html: PropTypes.string}
     )
   }),

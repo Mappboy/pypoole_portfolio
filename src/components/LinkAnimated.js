@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { path } from 'ramda';
 
 const LinkAnimated = styled.span`
   text-decoration: none;

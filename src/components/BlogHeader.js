@@ -43,21 +43,21 @@ const Header = () => (
               onClick={() => navigate(`/`)}
               dark
             >
-                Home
+              Home
             </RouteLink>
             <RouteLink
               key="blog"
               onClick={() => navigate(`/blog`)}
               dark
             >
-                Blog
+              Blog
             </RouteLink>
             <RouteLink
               key="tags"
               onClick={() => navigate(`/tags`)}
               dark
             >
-                Tags
+              Tags
             </RouteLink>
             <Box ml={[2, 3]}>
               <DarkModeToggle />

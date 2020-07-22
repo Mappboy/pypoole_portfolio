@@ -5,16 +5,14 @@ import DarkModeToggle from "react-dark-mode-toggle";
 import {connect} from 'react-redux';
 import {toggleDarkMode} from "../state/app";
 
-const Toggler = ({dispatch, isDarkMode}) => {
-
-  return (
+const Toggler = ({dispatch, isDarkMode}) =>
+  (
     <DarkModeToggle
       onChange={() => dispatch(toggleDarkMode(!isDarkMode))}
       checked={isDarkMode}
       size={80}
     />
   );
-};
 
 
 Toggler.propTypes = {

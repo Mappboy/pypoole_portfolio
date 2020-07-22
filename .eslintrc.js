@@ -12,6 +12,8 @@ module.exports = {
       }
     ],
     'react/require-default-props': 'off',
+    'react/no-danger': 'off',
+    'react/display-name': 'off'
   },
   parser: 'babel-eslint',
   env: {

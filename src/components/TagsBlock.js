@@ -39,7 +39,7 @@ const TagsBlock = ({ list }) => (
 export default TagsBlock;
 
 TagsBlock.propTypes = {
-  list: PropTypes.shape({
+  list: PropTypes.arrayOf({
     tag: PropTypes.string
   }
   ),

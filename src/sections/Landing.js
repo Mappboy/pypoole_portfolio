@@ -79,13 +79,13 @@ const LandingPage = () => (
               textAlign="center"
             >
               <Flex alignItems="center" alignContent="center" flexWrap='wrap' justifyContent="center">
-              <TextLoop>
-                {roles.map(text => (
-                  <Text width={[300, 300, 500]} key={text} textAlign="center" >
-                    {text}
-                  </Text>
+                <TextLoop>
+                  {roles.map(text => (
+                    <Text width={[300, 300, 500]} key={text} textAlign="center">
+                      {text}
+                    </Text>
                 ))}
-              </TextLoop>
+                </TextLoop>
               </Flex>
             </Heading>
 

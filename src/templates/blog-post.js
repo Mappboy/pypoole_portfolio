@@ -195,7 +195,7 @@ return (
           (
           <Text fontSize={5} dangerouslySetInnerHTML={{ __html:post.subtitle.childMarkdownRemark.html}} />)}
         <Flex>
-          {post.tags && post.tags.map((tagName, index) => {
+          {post.tags && post.tags.map((tagName) => {
               const upperTag = tagName.charAt(0).toUpperCase() + tagName.slice(1);
               return (
                 <Box key={tagName} ml={[2, 3]} color="background" fontSize={[2, 3]}>
@@ -233,7 +233,7 @@ BlogPage.propTypes = {
           )
         }),
         post: PropTypes.shape({
-          childContentfulRichText: PropTypes.shape({
+          childMarkdownRemark: PropTypes.shape({
               html: PropTypes.string,
           }
           )
@@ -242,7 +242,10 @@ BlogPage.propTypes = {
           description: PropTypes.string,
           image: PropTypes.shape({
             src: PropTypes.string,
-          })
+          }),
+          fluid: PropTypes.shape({
+            src: PropTypes.string,
+          }),
         }),
         slug: PropTypes.string.isRequired,
         createDate: PropTypes.string.isRequired,

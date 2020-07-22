@@ -66,5 +66,6 @@ const Content = ({ input }) => (
 export default Content;
 
 Content.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   input: PropTypes.any.isRequired,
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Heading, Box } from 'rebass';
-import Layout from '../components/Layout';
 import Section from '../components/Section';
 import Triangle from '../components/Triangle';
 
@@ -30,16 +29,16 @@ const Background = () => (
 );
 
 const NotFoundPage = () => (
-    <Section.Container id="404" Background={Background}>
-      <Box width={[320, 400, 600]} m="auto">
-        <Heading color="primaryDark" fontSize={['9rem', '13rem', '16rem']}>
-          404
-        </Heading>
-        <Heading color="secondary" fontSize={['4rem', '5rem', '6rem']}>
-          {"There isn't anything here"}
-        </Heading>
-      </Box>
-    </Section.Container>
+  <Section.Container id="404" Background={Background}>
+    <Box width={[320, 400, 600]} m="auto">
+      <Heading color="primaryDark" fontSize={['9rem', '13rem', '16rem']}>
+        404
+      </Heading>
+      <Heading color="secondary" fontSize={['4rem', '5rem', '6rem']}>
+        This page has gone missing. Sorry !! Send me a message if it is important
+      </Heading>
+    </Box>
+  </Section.Container>
 );
 
 export default NotFoundPage;

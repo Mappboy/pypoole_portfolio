@@ -9,7 +9,7 @@ import config from 'react-reveal/globals';
 import {darkModeTheme, lightModeTheme} from '../theme';
 import Helmet from './Helmet';
 import {useSingleModal} from "../contexts/singleModalContext";
-import {SingleModal} from "./Modal";
+import SingleModal from "./Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const GlobalStyle = createGlobalStyle`

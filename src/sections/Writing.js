@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Heading, Box, Flex } from 'rebass';
+import { Heading, Box } from 'rebass';
 import { StaticQuery, graphql, navigate } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image'
@@ -52,6 +52,7 @@ const EllipsisHeading = styled(Heading)`
   -webkit-box-orient: vertical;
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
+
 
 const Post = ({ title, text, heroImage, slug, createdAt, readingTime }) => (
   <Card onClick={() => navigate(`blog/${slug}`)} pb={4} minWidth="350px">

@@ -110,12 +110,16 @@ const Tags = ({pageContext}) => {
           justifyContent='center'
           p={2}
         >
-          {tags && tags.map((tagName, index) => {
+          {tags && tags.map((tagName) => {
             const upperTag = tagName.charAt(0).toUpperCase() + tagName.slice(1);
             return (
               <Fade key={tagName}>
                 <StyledBadge onClick={() => navigate(`/tags/${tagName}`)}>
-                  <Text fontSize={[ 3, 3, 3 ]} fontWeight="bold"> {upperTag} </Text>
+                  <Text fontSize={[ 3, 3, 3 ]} fontWeight="bold">
+                    {' '}
+                    {upperTag}
+                    {' '}
+                  </Text>
                 </StyledBadge>
               </Fade>
             )

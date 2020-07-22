@@ -30,5 +30,5 @@ Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
   type: PropTypes.string,
   className: PropTypes.string,
-  center: PropTypes.object,
+  center: PropTypes.string,
 };

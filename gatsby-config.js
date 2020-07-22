@@ -128,7 +128,6 @@ module.exports = {
         },
       'gatsby-plugin-offline',
       'gatsby-plugin-netlify',
-      'gatsby-plugin-dark-mode',
       // {
       //   resolve: '@fec/gatsby-plugin-advanced-feed',
       //   options: {

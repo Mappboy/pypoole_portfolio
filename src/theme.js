@@ -82,8 +82,8 @@ const gradient = {
 
 
 const lightModeTheme = {
-  colors: colors,
-  shadow: shadow,
+  colors,
+  shadow,
   fontSizes: [
     12, 14, 16, 20, 24, 32, 48, 64, 72
   ],
@@ -91,7 +91,7 @@ const lightModeTheme = {
 
 const darkModeTheme = {
   colors: night_mode_colors,
-  shadow: shadow,
+  shadow,
   fontSizes: [
     12, 14, 16, 20, 24, 32, 48, 64, 62
   ],

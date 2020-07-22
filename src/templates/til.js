@@ -1,7 +1,9 @@
+
+
 import React from "react"
 import { graphql } from "gatsby"
 import PropTypes from 'prop-types';
-import {  Flex, Text, Box } from 'rebass';
+import {  Flex, Text } from 'rebass';
 import styled from 'styled-components';
 import Section from '../components/Section';
 import Header from '../components/BlogHeader';
@@ -90,6 +92,7 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
+
 const TILPage = ({data}) => {
 const post = data.markdownRemark;
 return (
@@ -103,7 +106,10 @@ return (
           fontWeight='bold'
           fontSize={6}
         >
-          {post.fields.heading} - {post.frontmatter.title}
+          {post.fields.heading}
+          {' '}
+          -
+          {post.frontmatter.title}
         </Text>
       </CenterText>
     </Wrapper>
@@ -118,7 +124,7 @@ return (
       </Flex>
     </Section.Container>
     <Footer />
-    </>
+  </>
 );
 }
 TILPage.propTypes = {

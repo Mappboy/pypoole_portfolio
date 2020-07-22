@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'rebass';
-import { path } from 'ramda';
 import { Tooltip } from 'react-tippy';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -14,11 +13,11 @@ const IconLink = styled(Link)`
     color: ${props => props.theme.colors.primaryLight};
   }
 `;
-const plain_icons = ["envelope", "globe"]
+const plainIcons = ["envelope", "globe"]
 const SocialLink = ({ fontAwesomeIcon, name, url }) => (
   <Tooltip title={name} position="bottom" trigger="mouseenter">
     <IconLink href={url} target="_blank" rel="noopener noreferrer">
-      {plain_icons.includes(fontAwesomeIcon) && <FontAwesomeIcon icon={fontAwesomeIcon} /> || <FontAwesomeIcon icon={['fab', fontAwesomeIcon]} /> }
+      {plainIcons.includes(fontAwesomeIcon) && <FontAwesomeIcon icon={fontAwesomeIcon} /> || <FontAwesomeIcon icon={['fab', fontAwesomeIcon]} /> }
     </IconLink>
   </Tooltip>
 );

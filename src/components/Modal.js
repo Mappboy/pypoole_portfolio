@@ -1,9 +1,10 @@
 import { Modal } from 'reactstrap';
 
-class SingleModal extends Modal {
+export default class SingleModal extends Modal {
   constructor(props) {
     super(props);
     if (typeof window !== 'undefined') {
+      /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
       this._element = document.getElementById('single-modal');
       this._element.setAttribute('tabindex', '-1');
       this._element.style.position = 'relative';
@@ -27,4 +28,3 @@ class SingleModal extends Modal {
   }
 }
 
-export { SingleModal };

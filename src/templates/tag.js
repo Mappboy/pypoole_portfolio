@@ -98,13 +98,11 @@ const Tag = ({pageContext}) => {
           {`Posts about ${upperTag}`}
         </Heading>
         <CardContainer minWidth="300px">
-          {posts.map((post, index) => {
-            return (
-              <Fade bottom key={post.id}>
-                <Post key={post.id} {...post} />
-              </Fade>
-            )
-          })}
+          {posts.map((post) => (
+            <Fade bottom key={post.id}>
+              <Post key={post.id} {...post} />
+            </Fade>
+            ))}
         </CardContainer>
       </Box>
     </Section.Container>
@@ -114,7 +112,7 @@ const Tag = ({pageContext}) => {
 Tag.propTypes = {
     pageContext: PropTypes.shape(
       {
-        posts: PropTypes.object,
+        posts: PropTypes.arrayOf(Post),
         tagName: PropTypes.string.isRequired
       }
     ).isRequired,
@@ -130,7 +128,7 @@ const TagPage = ({pageContext}) => (
 TagPage.propTypes = {
   pageContext: PropTypes.shape(
     {
-      posts: PropTypes.object,
+      posts: PropTypes.arrayOf(Tag),
       tagName: PropTypes.string.isRequired
     }
   ).isRequired,

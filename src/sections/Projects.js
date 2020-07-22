@@ -181,9 +181,11 @@ const Project = ({
           <ProjectModal>
             <ModalHeader>{name}</ModalHeader>
             <ModalBody>
-              <Text width={[1]} style={{ overflow: 'auto' }} dangerouslySetInnerHTML={{ __html:fullDescription.childMarkdownRemark.html}} >
-              </Text>
-              <ModalImage fluid={logo.imageModal} alt={logo.title} loading="lazy"
+              <Text width={[1]} style={{ overflow: 'auto' }} dangerouslySetInnerHTML={{ __html:fullDescription.childMarkdownRemark.html}} />
+              <ModalImage
+                fluid={logo.imageModal}
+                alt={logo.title}
+                loading="lazy"
               />
               <Flex direction="row">
                 <Text fontWeight='bold'>Tech: </Text>
@@ -225,7 +227,7 @@ const Project = ({
           </TextContainer>
 
           <ImageContainer>
-            <ProjectImage fluid={logo.image} alt={logo.title} loading="lazy"/>
+            <ProjectImage fluid={logo.image} alt={logo.title} loading="lazy" />
             <ProjectTag>
               <Flex
                 style={{
@@ -304,10 +306,10 @@ const Projects = () => (
                 type
                 tech
                 logo {
-                image: fluid(maxHeight: 200, quality: 90) {
+                image: fluid(maxHeight: 400, maxWidth: 400, quality: 90) {
                   ...GatsbyContentfulFluid_withWebp
                 }
-                imageModal: fluid {
+                imageModal: fluid(maxWidth: 600, quality: 90) {
                   ...GatsbyContentfulFluid_withWebp
                 }
               }
