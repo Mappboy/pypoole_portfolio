@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Img  from 'gatsby-image';
 import Section from '../components/Section';
 import Layout from '../components/Layout';
-import Header from '../components/BlogHeader';
+import Header from '../components/NonHomeHeader';
 import Footer from '../components/Footer';
 import { gradient } from '../theme';
 

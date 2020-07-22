@@ -10,7 +10,7 @@ import Section from '../components/Section';
 import { CardContainer, Card } from '../components/Card';
 import Triangle from '../components/Triangle';
 import ImageSubtitle from '../components/ImageSubtitle';
-import Header from '../components/BlogHeader';
+import Header from '../components/NonHomeHeader';
 import Footer from '../components/Footer';
 
 const Background = () => (

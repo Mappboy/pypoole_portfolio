@@ -1,12 +1,10 @@
-
-
 import React from "react"
-import { graphql } from "gatsby"
+import {graphql} from "gatsby"
 import PropTypes from 'prop-types';
-import {  Flex, Text } from 'rebass';
+import {Flex, Text} from 'rebass';
 import styled from 'styled-components';
 import Section from '../components/Section';
-import Header from '../components/BlogHeader';
+import Header from '../components/NonHomeHeader';
 import Footer from '../components/Footer';
 import {gradient} from "../theme";
 
@@ -78,7 +76,6 @@ const CenterText = styled(Text)`
 `;
 
 
-
 const Wrapper = styled.div`
   background: ${gradient.rightToLeft};
   height: 300px;
@@ -92,73 +89,74 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-
 const TILPage = ({data}) => {
-const post = data.markdownRemark;
-return (
-  <>
-    <Header />
-    <Wrapper>
-      <CenterText>
-        <Text
-          width={[1, 1, 4 / 6]}
-          px={[1, 2, 4]}
-          fontWeight='bold'
-          fontSize={6}
-        >
-          {post.fields.heading}
-          {' '}
-          -
-          {post.frontmatter.title}
-        </Text>
-      </CenterText>
-    </Wrapper>
-    <Section.Container id="home">
-      <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
-        <TextContainer
-          width={[1, 1, 4 / 6]}
-          px={[1, 2, 4]}
-        >
-          <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        </TextContainer>
-      </Flex>
-    </Section.Container>
-    <Footer />
-  </>
-);
+    const post = data.markdownRemark;
+    return (
+      <>
+        <Header />
+        <Wrapper>
+          <CenterText>
+            <Text
+              width={[1, 1, 4 / 6]}
+              px={[1, 2, 4]}
+              fontWeight='bold'
+              fontSize={6}
+            >
+              {post.fields.heading}
+              {' '}
+              -
+              {post.frontmatter.title}
+            </Text>
+          </CenterText>
+        </Wrapper>
+        <Section.Container id="home">
+          <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
+            <TextContainer
+              width={[1, 1, 4 / 6]}
+              px={[1, 2, 4]}
+            >
+              <div dangerouslySetInnerHTML={{__html: post.html}} />
+            </TextContainer>
+          </Flex>
+        </Section.Container>
+        <Footer />
+      </>
+    );
 }
 TILPage.propTypes = {
     data: PropTypes.shape({
-      markdownRemark: PropTypes.shape(
-      {
-        fields: PropTypes.shape( {heading: PropTypes.string}),
-        html: PropTypes.string,
-        frontmatter: PropTypes.shape(
-          {
-            categories: PropTypes.string,
-            date: PropTypes.instanceOf(Date),
-            slug:PropTypes.string,
-            title: PropTypes.string,
-            tags: PropTypes.arrayOf(PropTypes.string)
-          }
-    ).isRequired,
-  })})};
+        markdownRemark: PropTypes.shape(
+            {
+                fields: PropTypes.shape({heading: PropTypes.string}),
+                html: PropTypes.string,
+                frontmatter: PropTypes.shape(
+                    {
+                        categories: PropTypes.string,
+                        date: PropTypes.instanceOf(Date),
+                        slug: PropTypes.string,
+                        title: PropTypes.string,
+                        tags: PropTypes.arrayOf(PropTypes.string)
+                    }
+                ).isRequired,
+            })
+    })
+};
 
 export default TILPage;
-export const query = graphql`    
+export const query = graphql`
     query($slug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-        html
-        fields{
-            heading
-        }
-        frontmatter {
-            categories
-            date
-            slug
-            title
-            tags
+        markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+            html
+            fields{
+                heading
+            }
+            frontmatter {
+                categories
+                date
+                slug
+                title
+                tags
+            }
         }
     }
-}
 `

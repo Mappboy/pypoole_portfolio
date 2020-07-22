@@ -95,6 +95,16 @@ type ContentfulAboutSysContentTypeSys {
 type ContentfulAsset implements Node {
     children: [Node!]!
     contentful_id: String
+    createdAt(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date
     description: String
     file: ContentfulAssetFile
     fixed(background: String, cropFocus: ContentfulImageCropFocus, height: Int, quality: Int = 50, resizingBehavior: ImageResizingBehavior, toFormat: ContentfulImageFormat = NO_CHANGE, width: Int): ContentfulFixed
@@ -106,7 +116,19 @@ type ContentfulAsset implements Node {
     resize(background: String, cropFocus: ContentfulImageCropFocus, height: Int, jpegProgressive: Boolean = true, quality: Int = 50, resizingBehavior: ImageResizingBehavior, toFormat: ContentfulImageFormat = NO_CHANGE, width: Int): ContentfulResize
     resolutions(background: String, cropFocus: ContentfulImageCropFocus, height: Int, quality: Int = 50, resizingBehavior: ImageResizingBehavior, toFormat: ContentfulImageFormat = NO_CHANGE, width: Int): ContentfulResolutions @deprecated(reason : "Resolutions was deprecated in Gatsby v2. It's been renamed to \"fixed\" https://example.com/write-docs-and-fix-this-example-link")
     sizes(background: String, cropFocus: ContentfulImageCropFocus, maxHeight: Int, maxWidth: Int, quality: Int = 50, resizingBehavior: ImageResizingBehavior, sizes: String, toFormat: ContentfulImageFormat = NO_CHANGE): ContentfulSizes @deprecated(reason : "Sizes was deprecated in Gatsby v2. It's been renamed to \"fluid\" https://example.com/write-docs-and-fix-this-example-link")
+    spaceId: String
+    sys: ContentfulAssetSys
     title: String
+    updatedAt(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date
 }
 
 type ContentfulAssetConnection {
@@ -148,6 +170,10 @@ type ContentfulAssetGroupConnection {
     nodes: [ContentfulAsset!]!
     pageInfo: PageInfo!
     totalCount: Int!
+}
+
+type ContentfulAssetSys {
+    revision: Int
 }
 
 type ContentfulBlogPost implements Node {
@@ -1191,7 +1217,7 @@ type Query {
     allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
     contentfulAbout(aboutMe: contentfulAboutAboutMeTextNodeFilterInput, childContentfulAboutAboutMeTextNode: contentfulAboutAboutMeTextNodeFilterInput, children: NodeFilterListInput, contentful_id: StringQueryOperatorInput, createdAt: DateQueryOperatorInput, description: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, mediumUser: StringQueryOperatorInput, name: StringQueryOperatorInput, node_locale: StringQueryOperatorInput, parent: NodeFilterInput, profile: ContentfulAssetFilterInput, projects: ContentfulProjectFilterListInput, roles: StringQueryOperatorInput, socialLinks: ContentfulSocialLinkFilterListInput, spaceId: StringQueryOperatorInput, sys: ContentfulAboutSysFilterInput, updatedAt: DateQueryOperatorInput): ContentfulAbout
     contentfulAboutAboutMeTextNode(aboutMe: StringQueryOperatorInput, childMarkdownRemark: MarkdownRemarkFilterInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): contentfulAboutAboutMeTextNode
-    contentfulAsset(children: NodeFilterListInput, contentful_id: StringQueryOperatorInput, description: StringQueryOperatorInput, file: ContentfulAssetFileFilterInput, fixed: ContentfulFixedFilterInput, fluid: ContentfulFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, node_locale: StringQueryOperatorInput, parent: NodeFilterInput, resize: ContentfulResizeFilterInput, resolutions: ContentfulResolutionsFilterInput, sizes: ContentfulSizesFilterInput, title: StringQueryOperatorInput): ContentfulAsset
+    contentfulAsset(children: NodeFilterListInput, contentful_id: StringQueryOperatorInput, createdAt: DateQueryOperatorInput, description: StringQueryOperatorInput, file: ContentfulAssetFileFilterInput, fixed: ContentfulFixedFilterInput, fluid: ContentfulFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, node_locale: StringQueryOperatorInput, parent: NodeFilterInput, resize: ContentfulResizeFilterInput, resolutions: ContentfulResolutionsFilterInput, sizes: ContentfulSizesFilterInput, spaceId: StringQueryOperatorInput, sys: ContentfulAssetSysFilterInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): ContentfulAsset
     contentfulBlogPost(article: contentfulBlogPostArticleTextNodeFilterInput, childContentfulBlogPostArticleTextNode: contentfulBlogPostArticleTextNodeFilterInput, childContentfulBlogPostDescriptionRichTextNode: contentfulBlogPostDescriptionRichTextNodeFilterInput, childContentfulBlogPostSubtitleTextNode: contentfulBlogPostSubtitleTextNodeFilterInput, children: NodeFilterListInput, contentful_id: StringQueryOperatorInput, createDate: DateQueryOperatorInput, createdAt: DateQueryOperatorInput, description: contentfulBlogPostDescriptionRichTextNodeFilterInput, heroImage: ContentfulAssetFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, node_locale: StringQueryOperatorInput, parent: NodeFilterInput, readingTime: IntQueryOperatorInput, slug: StringQueryOperatorInput, spaceId: StringQueryOperatorInput, subtitle: contentfulBlogPostSubtitleTextNodeFilterInput, sys: ContentfulBlogPostSysFilterInput, tags: StringQueryOperatorInput, title: StringQueryOperatorInput, updateDate: DateQueryOperatorInput, updatedAt: DateQueryOperatorInput): ContentfulBlogPost
     contentfulBlogPostArticleTextNode(article: StringQueryOperatorInput, childMarkdownRemark: MarkdownRemarkFilterInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): contentfulBlogPostArticleTextNode
     contentfulBlogPostDescriptionRichTextNode(childContentfulRichText: ContentfulRichTextFilterInput, children: NodeFilterListInput, content: contentfulBlogPostDescriptionRichTextNodeContentFilterListInput, description: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, json: JSONQueryOperatorInput, nodeType: StringQueryOperatorInput, parent: NodeFilterInput): contentfulBlogPostDescriptionRichTextNode
@@ -1458,6 +1484,7 @@ type SitePluginPluginOptions {
     cacheDigest: String
     cache_busting_mode: String
     display: String
+    feeds: [SitePluginPluginOptionsFeeds]
     icon: String
     ignore: [String]
     include_favicon: Boolean
@@ -1469,6 +1496,7 @@ type SitePluginPluginOptions {
     pathToConfigModule: String
     patterns: [String]
     plugins: [SitePluginPluginOptionsPlugins]
+    query: String
     remote: String
     short_name: String
     spaceId: String
@@ -1476,6 +1504,13 @@ type SitePluginPluginOptions {
     stripMetadata: Boolean
     theme_color: String
     theme_color_in_head: Boolean
+}
+
+type SitePluginPluginOptionsFeeds {
+    match: String
+    output: String
+    query: String
+    title: String
 }
 
 type SitePluginPluginOptionsPlugins {
@@ -1931,6 +1966,7 @@ enum ContentfulAboutFieldsEnum {
     profile___children___parent___children
     profile___children___parent___id
     profile___contentful_id
+    profile___createdAt
     profile___description
     profile___file___contentType
     profile___file___details___size
@@ -2000,7 +2036,10 @@ enum ContentfulAboutFieldsEnum {
     profile___sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     profile___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     profile___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    profile___spaceId
+    profile___sys___revision
     profile___title
+    profile___updatedAt
     projects
     projects___about
     projects___about___aboutMe___aboutMe
@@ -2031,10 +2070,13 @@ enum ContentfulAboutFieldsEnum {
     projects___about___parent___id
     projects___about___profile___children
     projects___about___profile___contentful_id
+    projects___about___profile___createdAt
     projects___about___profile___description
     projects___about___profile___id
     projects___about___profile___node_locale
+    projects___about___profile___spaceId
     projects___about___profile___title
+    projects___about___profile___updatedAt
     projects___about___projects
     projects___about___projects___about
     projects___about___projects___children
@@ -2150,6 +2192,7 @@ enum ContentfulAboutFieldsEnum {
     projects___logo___children___children
     projects___logo___children___id
     projects___logo___contentful_id
+    projects___logo___createdAt
     projects___logo___description
     projects___logo___file___contentType
     projects___logo___file___fileName
@@ -2206,7 +2249,10 @@ enum ContentfulAboutFieldsEnum {
     projects___logo___sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     projects___logo___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     projects___logo___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    projects___logo___spaceId
+    projects___logo___sys___revision
     projects___logo___title
+    projects___logo___updatedAt
     projects___name
     projects___node_locale
     projects___parent___children
@@ -2262,10 +2308,13 @@ enum ContentfulAboutFieldsEnum {
     socialLinks___about___parent___id
     socialLinks___about___profile___children
     socialLinks___about___profile___contentful_id
+    socialLinks___about___profile___createdAt
     socialLinks___about___profile___description
     socialLinks___about___profile___id
     socialLinks___about___profile___node_locale
+    socialLinks___about___profile___spaceId
     socialLinks___about___profile___title
+    socialLinks___about___profile___updatedAt
     socialLinks___about___projects
     socialLinks___about___projects___about
     socialLinks___about___projects___children
@@ -2395,6 +2444,7 @@ enum ContentfulAssetFieldsEnum {
     children___parent___parent___children
     children___parent___parent___id
     contentful_id
+    createdAt
     description
     file___contentType
     file___details___image___height
@@ -2490,7 +2540,10 @@ enum ContentfulAssetFieldsEnum {
     sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    spaceId
+    sys___revision
     title
+    updatedAt
 }
 
 enum ContentfulBlogPostFieldsEnum {
@@ -2898,6 +2951,7 @@ enum ContentfulBlogPostFieldsEnum {
     heroImage___children___parent___children
     heroImage___children___parent___id
     heroImage___contentful_id
+    heroImage___createdAt
     heroImage___description
     heroImage___file___contentType
     heroImage___file___details___size
@@ -2967,7 +3021,10 @@ enum ContentfulBlogPostFieldsEnum {
     heroImage___sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     heroImage___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     heroImage___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    heroImage___spaceId
+    heroImage___sys___revision
     heroImage___title
+    heroImage___updatedAt
     id
     internal___content
     internal___contentDigest
@@ -3319,6 +3376,7 @@ enum ContentfulProjectFieldsEnum {
     about___profile___children___children
     about___profile___children___id
     about___profile___contentful_id
+    about___profile___createdAt
     about___profile___description
     about___profile___file___contentType
     about___profile___file___fileName
@@ -3375,7 +3433,10 @@ enum ContentfulProjectFieldsEnum {
     about___profile___sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     about___profile___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     about___profile___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    about___profile___spaceId
+    about___profile___sys___revision
     about___profile___title
+    about___profile___updatedAt
     about___projects
     about___projects___about
     about___projects___about___children
@@ -3414,10 +3475,13 @@ enum ContentfulProjectFieldsEnum {
     about___projects___internal___type
     about___projects___logo___children
     about___projects___logo___contentful_id
+    about___projects___logo___createdAt
     about___projects___logo___description
     about___projects___logo___id
     about___projects___logo___node_locale
+    about___projects___logo___spaceId
     about___projects___logo___title
+    about___projects___logo___updatedAt
     about___projects___name
     about___projects___node_locale
     about___projects___parent___children
@@ -3687,6 +3751,7 @@ enum ContentfulProjectFieldsEnum {
     logo___children___parent___children
     logo___children___parent___id
     logo___contentful_id
+    logo___createdAt
     logo___description
     logo___file___contentType
     logo___file___details___size
@@ -3756,7 +3821,10 @@ enum ContentfulProjectFieldsEnum {
     logo___sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     logo___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     logo___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    logo___spaceId
+    logo___sys___revision
     logo___title
+    logo___updatedAt
     name
     node_locale
     parent___children
@@ -4004,6 +4072,7 @@ enum ContentfulSocialLinkFieldsEnum {
     about___profile___children___children
     about___profile___children___id
     about___profile___contentful_id
+    about___profile___createdAt
     about___profile___description
     about___profile___file___contentType
     about___profile___file___fileName
@@ -4060,7 +4129,10 @@ enum ContentfulSocialLinkFieldsEnum {
     about___profile___sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     about___profile___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     about___profile___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    about___profile___spaceId
+    about___profile___sys___revision
     about___profile___title
+    about___profile___updatedAt
     about___projects
     about___projects___about
     about___projects___about___children
@@ -4099,10 +4171,13 @@ enum ContentfulSocialLinkFieldsEnum {
     about___projects___internal___type
     about___projects___logo___children
     about___projects___logo___contentful_id
+    about___projects___logo___createdAt
     about___projects___logo___description
     about___projects___logo___id
     about___projects___logo___node_locale
+    about___projects___logo___spaceId
     about___projects___logo___title
+    about___projects___logo___updatedAt
     about___projects___name
     about___projects___node_locale
     about___projects___parent___children
@@ -4319,6 +4394,7 @@ enum ContentfulToolBoxFieldsEnum {
     image___children___parent___children
     image___children___parent___id
     image___contentful_id
+    image___createdAt
     image___description
     image___file___contentType
     image___file___details___size
@@ -4388,7 +4464,10 @@ enum ContentfulToolBoxFieldsEnum {
     image___sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     image___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     image___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    image___spaceId
+    image___sys___revision
     image___title
+    image___updatedAt
     internal___content
     internal___contentDigest
     internal___description
@@ -5684,6 +5763,11 @@ enum SitePageFieldsEnum {
     pluginCreator___pluginOptions___cacheDigest
     pluginCreator___pluginOptions___cache_busting_mode
     pluginCreator___pluginOptions___display
+    pluginCreator___pluginOptions___feeds
+    pluginCreator___pluginOptions___feeds___match
+    pluginCreator___pluginOptions___feeds___output
+    pluginCreator___pluginOptions___feeds___query
+    pluginCreator___pluginOptions___feeds___title
     pluginCreator___pluginOptions___icon
     pluginCreator___pluginOptions___ignore
     pluginCreator___pluginOptions___include_favicon
@@ -5700,6 +5784,7 @@ enum SitePageFieldsEnum {
     pluginCreator___pluginOptions___plugins___pluginFilepath
     pluginCreator___pluginOptions___plugins___resolve
     pluginCreator___pluginOptions___plugins___version
+    pluginCreator___pluginOptions___query
     pluginCreator___pluginOptions___remote
     pluginCreator___pluginOptions___short_name
     pluginCreator___pluginOptions___spaceId
@@ -5823,6 +5908,11 @@ enum SitePluginFieldsEnum {
     pluginOptions___cacheDigest
     pluginOptions___cache_busting_mode
     pluginOptions___display
+    pluginOptions___feeds
+    pluginOptions___feeds___match
+    pluginOptions___feeds___output
+    pluginOptions___feeds___query
+    pluginOptions___feeds___title
     pluginOptions___icon
     pluginOptions___ignore
     pluginOptions___include_favicon
@@ -5839,6 +5929,7 @@ enum SitePluginFieldsEnum {
     pluginOptions___plugins___pluginFilepath
     pluginOptions___plugins___resolve
     pluginOptions___plugins___version
+    pluginOptions___query
     pluginOptions___remote
     pluginOptions___short_name
     pluginOptions___spaceId
@@ -6663,6 +6754,7 @@ input ContentfulAssetFileFilterInput {
 input ContentfulAssetFilterInput {
     children: NodeFilterListInput
     contentful_id: StringQueryOperatorInput
+    createdAt: DateQueryOperatorInput
     description: StringQueryOperatorInput
     file: ContentfulAssetFileFilterInput
     fixed: ContentfulFixedFilterInput
@@ -6674,12 +6766,19 @@ input ContentfulAssetFilterInput {
     resize: ContentfulResizeFilterInput
     resolutions: ContentfulResolutionsFilterInput
     sizes: ContentfulSizesFilterInput
+    spaceId: StringQueryOperatorInput
+    sys: ContentfulAssetSysFilterInput
     title: StringQueryOperatorInput
+    updatedAt: DateQueryOperatorInput
 }
 
 input ContentfulAssetSortInput {
     fields: [ContentfulAssetFieldsEnum]
     order: [SortOrderEnum] = [ASC]
+}
+
+input ContentfulAssetSysFilterInput {
+    revision: IntQueryOperatorInput
 }
 
 input ContentfulBlogPostFilterInput {
@@ -7432,12 +7531,24 @@ input SitePluginPackageJsonPeerDependenciesFilterListInput {
     elemMatch: SitePluginPackageJsonPeerDependenciesFilterInput
 }
 
+input SitePluginPluginOptionsFeedsFilterInput {
+    match: StringQueryOperatorInput
+    output: StringQueryOperatorInput
+    query: StringQueryOperatorInput
+    title: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsFeedsFilterListInput {
+    elemMatch: SitePluginPluginOptionsFeedsFilterInput
+}
+
 input SitePluginPluginOptionsFilterInput {
     accessToken: StringQueryOperatorInput
     background_color: StringQueryOperatorInput
     cacheDigest: StringQueryOperatorInput
     cache_busting_mode: StringQueryOperatorInput
     display: StringQueryOperatorInput
+    feeds: SitePluginPluginOptionsFeedsFilterListInput
     icon: StringQueryOperatorInput
     ignore: StringQueryOperatorInput
     include_favicon: BooleanQueryOperatorInput
@@ -7449,6 +7560,7 @@ input SitePluginPluginOptionsFilterInput {
     pathToConfigModule: StringQueryOperatorInput
     patterns: StringQueryOperatorInput
     plugins: SitePluginPluginOptionsPluginsFilterListInput
+    query: StringQueryOperatorInput
     remote: StringQueryOperatorInput
     short_name: StringQueryOperatorInput
     spaceId: StringQueryOperatorInput

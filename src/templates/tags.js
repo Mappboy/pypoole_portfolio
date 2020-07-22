@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import { LightSpeed, Fade } from 'react-reveal';
 import Triangle from '../components/Triangle';
-import Header from '../components/BlogHeader';
+import Header from '../components/NonHomeHeader';
 import Footer from '../components/Footer';
 import LinkAnimated from '../components/LinkAnimated';
 

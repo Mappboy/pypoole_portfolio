@@ -26,16 +26,12 @@ module.exports = {
              */
             renderNode: {
               // Example
-              [INLINES.ASSET_HYPERLINK]: node => {
-                return `<img class='custom-asset' src="${
+              [INLINES.ASSET_HYPERLINK]: node => `<img class='custom-asset' src="${
                   node.data.target.fields.file['en-US'].url
-                }"/>`
-              },
-              [INLINES.EMBEDDED_ENTRY]: node => {
-                return `<div class='custom-entry' />${
+                }"/>`,
+              [INLINES.EMBEDDED_ENTRY]: node => `<div class='custom-entry' />${
                   node.data.target.fields.name['en-US']
-                }</div>`
-              },
+                }</div>`,
             },
           },
         },
@@ -128,33 +124,64 @@ module.exports = {
         },
       'gatsby-plugin-offline',
       'gatsby-plugin-netlify',
-      // {
-      //   resolve: '@fec/gatsby-plugin-advanced-feed',
-      //   options: {
-      //     feeds: [
-      //       {
-      //         // Configure the feed; smart defaults are choosen if not set
-      //         description: "PyPoole Blog TILs", // default: site.siteMetadata.description
-      //
-      //
-      //         // Add <link> tags in <head> to feeds
-      //         createLinkInHead: true, // `true` for all pages or regular expression to match pathnames
-      //
-      //         // Number of articles to include in feed
-      //         limit: 10,
-      //
-      //         // Include all pages which `fileAbsolutePath` matches this regular expression
-      //         match: '^/til/',
-      //
-      //         // File names of generated feeds
-      //         output: {
-      //           rss2: 'rss-til.xml',
-      //           atom: 'atom-til.xml',
-      //           json: 'feed-til.json',
-      //         },
-      //       }
-      //     ],
-      //   }
-      // }
+      {
+        resolve: `gatsby-plugin-feed`,
+        options: {
+          query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+          feeds: [
+            {
+              serialize: ({ query: { site, allMarkdownRemark } }) => allMarkdownRemark.edges.map(edge => Object.assign({}, edge.node.frontmatter, {
+                    description: edge.node.excerpt,
+                    date: edge.node.frontmatter.date,
+                    url: `${site.siteMetadata.siteUrl  }til/${  edge.node.fields.slug}`,
+                    guid: `${site.siteMetadata.siteUrl  }til/${  edge.node.fields.slug}`,
+                    custom_elements: [{ "content:encoded": edge.node.html }],
+                  })),
+              query: `
+              {
+                    query TILPostQueryAll {
+                      allMarkdownRemark(
+                      limit:10,
+                      filter: {frontmatter: {title: {ne: ""}}},
+                       sort: {order: ASC, fields: [frontmatter___date]}) {
+                          edges {
+                            node {
+                            fields {
+                            heading
+                            }
+                              frontmatter {
+                                title
+                                date
+                                slug
+                              }
+                          }
+                        }
+                      }
+                    }
+              }
+            `,
+              output: "/rss.xml",
+              title: "PyPoole Today I Learned",
+              // optional configuration to insert feed reference in pages:
+              // if `string` is used, it will be used to create RegExp and then test if pathname of
+              // current page satisfied this regular expression;
+              // if not provided or `undefined`, all pages will have feed reference inserted
+              match: "^/til/",
+              // optional configuration to specify external rss feed, such as feedburner
+            },
+          ],
+        },
+      },
     ],
   };
