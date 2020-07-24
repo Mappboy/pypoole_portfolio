@@ -21,7 +21,6 @@ exports.createPages = ({ graphql, actions, reporter }) => {
   const tagPage = path.resolve('src/templates/tags.js');
   const tagPosts = path.resolve('src/templates/tag.js');
   const postsByTag = {};
-  const tilsByHeading = {};
   return graphql(`
     {
         allContentfulBlogPost {
@@ -115,7 +114,7 @@ exports.createPages = ({ graphql, actions, reporter }) => {
           tagName,
         },
       })
-    };
+    }
   });
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({

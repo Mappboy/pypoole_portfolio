@@ -142,33 +142,32 @@ module.exports = {
           feeds: [
             {
               serialize: ({ query: { site, allMarkdownRemark } }) => allMarkdownRemark.edges.map(edge => Object.assign({}, edge.node.frontmatter, {
-                    description: edge.node.excerpt,
-                    date: edge.node.frontmatter.date,
-                    url: `${site.siteMetadata.siteUrl  }til/${  edge.node.fields.slug}`,
-                    guid: `${site.siteMetadata.siteUrl  }til/${  edge.node.fields.slug}`,
+                    description: edge.node.title,
+                    date: new Date(edge.node.frontmatter.date),
+                    url: `${site.siteMetadata.siteUrl  }/til/${  edge.node.frontmatter.slug}`,
+                    guid: `${site.siteMetadata.siteUrl  }/til/${  edge.node.frontmatter.slug}`,
                     custom_elements: [{ "content:encoded": edge.node.html }],
                   })),
               query: `
               {
-                    query TILPostQueryAll {
-                      allMarkdownRemark(
-                      limit:10,
-                      filter: {frontmatter: {title: {ne: ""}}},
-                       sort: {order: ASC, fields: [frontmatter___date]}) {
-                          edges {
-                            node {
-                            fields {
-                            heading
-                            }
-                              frontmatter {
-                                title
-                                date
-                                slug
-                              }
-                          }
-                        }
+                allMarkdownRemark(
+                limit:10,
+                filter: {frontmatter: {title: {ne: ""}}},
+                 sort: {order: ASC, fields: [frontmatter___date]}) {
+                    edges {
+                      node {
+                      fields {
+                      heading
                       }
+                        frontmatter {
+                          title
+                          date
+                          slug
+                        }
+                       html
                     }
+                  }
+                }
               }
             `,
               output: "/rss.xml",

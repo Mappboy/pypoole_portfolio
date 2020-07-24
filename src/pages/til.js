@@ -47,6 +47,23 @@ const EllipsisHeading = styled(Heading)`
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
+export const HeadingContainer = styled.div`
+  display: grid;
+  grid-gap: 30px;
+  
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(${props => props.minWidth}, 1fr)
+  );
+  justify-items: center;
+
+  @media only screen and (max-width: 400px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+    margin-bottom: 200px;
+
+`;
+
 const edgeToArray = data => data.edges.map(edge =>
     edge.node
 );
@@ -54,6 +71,10 @@ const TIL = ({fields, frontmatter}) => (
   <Link to={`${fields.heading.toLowerCase()}/${frontmatter.slug}`} pb={4}>
     <Text m={3} p={1}>
       {frontmatter.title}
+      {' '}
+      -
+      {' '}
+      {frontmatter.date}
     </Text>
   </Link>
 );
@@ -96,7 +117,7 @@ TILHeading.propTypes = {
                         fields: PropTypes.shape({heading: PropTypes.string}),
                         frontmatter: PropTypes.shape(
                             {
-                                date: PropTypes.instanceOf(Date),
+                                date: PropTypes.string,
                                 slug: PropTypes.string,
                                 title: PropTypes.string,
                             }
@@ -112,12 +133,20 @@ TILHeading.propTypes = {
 
 
 const TILSection = () => (
-  <Section.Container id="til" Background={Background} p={4}>
+  <Section.Container id="til" Background={Background} p={4} pb={5}>
     <Section.Header name="TIL" icon="📚 " label="til" />
+    <Text
+      fontSize={[ 3, 4, 5 ]}
+      textAlign="center"
+      color='primary'
+    >
+      My latest learnings, epiphanies, and snippets...
+    </Text>
+
     <StaticQuery
       query={graphql`
     query TILPostQueryAll {
-  allMarkdownRemark(filter: {frontmatter: {title: {ne: ""}}}, sort: {order: ASC, fields: [frontmatter___date]}) {
+  allMarkdownRemark(filter: {frontmatter: {title: {ne: ""}}}, sort: {order: DESC, fields: [frontmatter___date]}) {
     group(field: fields___heading) {
       fieldValue
       totalCount
@@ -129,7 +158,7 @@ const TILSection = () => (
           }
           frontmatter {
             title
-            date
+            date(formatString: "DD/MM/YYYY")
             slug
           }
         }
@@ -139,13 +168,15 @@ const TILSection = () => (
 }
 `}
       render={({allMarkdownRemark}) => (
-        <Flex flexDirection="column" minWidth="300px">
-          {allMarkdownRemark.group.map((group) => (
-            <Fade key={group.fieldValue}>
-              <TILHeading key={group.fieldValue} group={group} />
-            </Fade>
+        <Flex flexDirection="column">
+          <HeadingContainer minWidth="350px">
+            {allMarkdownRemark.group.map((group) => (
+              <Fade key={group.fieldValue}>
+                <TILHeading key={group.fieldValue} group={group} />
+              </Fade>
 ))
           }
+          </HeadingContainer>
         </Flex>
             )}
     />

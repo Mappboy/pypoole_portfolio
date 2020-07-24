@@ -59,6 +59,13 @@ const Header = () => (
             >
               Tags
             </RouteLink>
+            <RouteLink
+              key="til"
+              onClick={() => navigate(`/til`)}
+              dark
+            >
+              TIL
+            </RouteLink>
             <Box ml={[2, 3]}>
               <DarkModeToggle />
             </Box>
