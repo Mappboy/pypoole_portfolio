@@ -1,13 +1,15 @@
+
 import React from "react"
 import {graphql} from "gatsby"
 import PropTypes from 'prop-types';
 import {Flex, Text} from 'rebass';
+
 import styled from 'styled-components';
 import Section from '../components/Section';
 import Header from '../components/NonHomeHeader';
 import Footer from '../components/Footer';
-import {gradient} from "../theme";
 
+const Color = require('color');
 
 const TextContainer = styled(Text)`
   margin-bottom:40px;
@@ -59,62 +61,40 @@ const TextContainer = styled(Text)`
 
 const CenterText = styled(Text)`
   color: ${props => props.theme.colors.primaryDark};
+  
   z-index: 0;
-  position: absolute;
   top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  text-align: center;
   width: 100%;
-  max-width: 70rem;
   padding: 0 1rem;
   margin-bottom: 3rem;
-  align-items: center;
-  text-shadow: 5px 5px 10px rgba(250,250,250,0.9);
+  text-shadow: 5px 5px 10px ${props => Color(props.theme.colors.backgroundDark).alpha(0.9)};
 `;
 
-
-const Wrapper = styled.div`
-  background: ${gradient.rightToLeft};
-  height: 300px;
-  @media (max-width: 900px) {
-    height: 300px;
-  }
-  @media (max-width: 600px) {
-    height: 275px;
-  }
-  position: relative;
-  overflow: hidden;
-`;
 
 const TILPage = ({data}) => {
     const post = data.markdownRemark;
     return (
       <>
         <Header />
-        <Wrapper>
-          <CenterText>
-            <Text
-              width={[1, 1, 4 / 6]}
-              px={[1, 2, 4]}
-              fontWeight='bold'
-              fontSize={6}
-            >
-              {post.fields.heading}
-              {' '}
-              -
-              {post.frontmatter.title}
-            </Text>
-          </CenterText>
-        </Wrapper>
         <Section.Container id="home">
           <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
+
             <TextContainer
               width={[1, 1, 4 / 6]}
               px={[1, 2, 4]}
             >
+              <CenterText
+                width={[1, 1, 4 / 6]}
+                px={[1, 2, 4]}
+                fontWeight='bold'
+                fontSize={6}
+              >
+                {post.fields.heading}
+                {' '}
+                /
+                {' '}
+                {post.frontmatter.title}
+              </CenterText>
               <div dangerouslySetInnerHTML={{__html: post.html}} />
             </TextContainer>
           </Flex>

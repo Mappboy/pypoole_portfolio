@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes, {arrayOf} from 'prop-types';
+import PropTypes from 'prop-types';
 import {Flex, Heading, Text} from 'rebass';
-import {StaticQuery, graphql, navigate} from 'gatsby';
+import {StaticQuery, graphql, Link} from 'gatsby';
 import styled from 'styled-components';
 
 
@@ -51,26 +51,21 @@ const edgeToArray = data => data.edges.map(edge =>
     edge.node
 );
 const TIL = ({fields, frontmatter}) => (
-  <Text onClick={() => navigate(`${fields.heading.toLowerCase()}/${frontmatter.slug}`)} pb={4}>
-    <EllipsisHeading m={3} p={1}>
+  <Link to={`${fields.heading.toLowerCase()}/${frontmatter.slug}`} pb={4}>
+    <Text m={3} p={1}>
       {frontmatter.title}
-    </EllipsisHeading>
-  </Text>
+    </Text>
+  </Link>
 );
 
 
 const TILHeading = ({group}) => (
   <>
-    <Text>{group.fieldValue}</Text>
-    {' '}
-    -
-    <Text>
-      {' '}
-      (
-      {group.fieldCount}
-      ) TILS
-    </Text>
-    {group.edges && edgeToArray(group.edges).map(node => (
+    <EllipsisHeading m={3} p={1}>
+      {group.fieldValue}
+    </EllipsisHeading>
+
+    {group.edges && edgeToArray(group).map(node => (
       <TIL key={node.id} {...node} />
         ))}
   </>
@@ -78,7 +73,7 @@ const TILHeading = ({group}) => (
 
 
 TIL.propTypes = {
-    fields: PropTypes.shape({heading: PropTypes.string}),
+  fields: PropTypes.shape({heading: PropTypes.string}),
     frontmatter: PropTypes.shape(
         {
             date: PropTypes.instanceOf(Date),
@@ -87,9 +82,7 @@ TIL.propTypes = {
         }
     ).isRequired,
 };
-Node.propTypes = {
-    node: PropTypes.shape({TIL})
-}
+
 TILHeading.propTypes = {
     group: PropTypes.arrayOf(
         PropTypes.shape({
@@ -99,7 +92,15 @@ TILHeading.propTypes = {
                 {
                     node: PropTypes.shape(
                         {
-                            TIL
+                          id: PropTypes.number,
+                        fields: PropTypes.shape({heading: PropTypes.string}),
+                        frontmatter: PropTypes.shape(
+                            {
+                                date: PropTypes.instanceOf(Date),
+                                slug: PropTypes.string,
+                                title: PropTypes.string,
+                            }
+                        ).isRequired,
                         }
                     )
                 }
@@ -111,7 +112,7 @@ TILHeading.propTypes = {
 
 
 const TILSection = () => (
-  <Section.Container id="til" Background={Background}>
+  <Section.Container id="til" Background={Background} p={4}>
     <Section.Header name="TIL" icon="📚 " label="til" />
     <StaticQuery
       query={graphql`
@@ -122,10 +123,10 @@ const TILSection = () => (
       totalCount
       edges {
         node {
-        id
-        fields {
-        heading
-        }
+          id
+          fields {
+            heading
+          }
           frontmatter {
             title
             date
@@ -138,12 +139,13 @@ const TILSection = () => (
 }
 `}
       render={({allMarkdownRemark}) => (
-        <Flex minWidth="300px">
+        <Flex flexDirection="column" minWidth="300px">
           {allMarkdownRemark.group.map((group) => (
-            <Fade bottom key={group.heading}>
-              <TILSection group={group} key={group.heading} />
+            <Fade key={group.fieldValue}>
+              <TILHeading key={group.fieldValue} group={group} />
             </Fade>
-          ))}
+))
+          }
         </Flex>
             )}
     />
