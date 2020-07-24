@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import { CardContainer, Card } from '../components/Card';
+import Container from '../components/PageContainer'
 import Triangle from '../components/Triangle';
 import ImageSubtitle from '../components/ImageSubtitle';
 import Header from '../components/NonHomeHeader';
@@ -90,12 +91,12 @@ const edgeToArray = data => data.edges.map(edge =>
   );
 
 const Writing = () => (
-  <Section.Container id="writing" Background={Background}>
+  <Container id="writing" Background={Background}>
     <Section.Header name="Writing" icon="✍️" label="writing" />
     <StaticQuery
       query={graphql`
       query BlogPostQueryAll {
-        allContentfulBlogPost {
+        allContentfulBlogPost(sort: {order: DESC, fields: [createdAt]}) {
           edges {
             node {
               id
@@ -131,7 +132,7 @@ const Writing = () => (
         );
       }}
     />
-  </Section.Container>
+  </Container>
 );
 
 

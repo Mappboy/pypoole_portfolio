@@ -101,7 +101,9 @@ const Writing = () => (
     <StaticQuery
       query={graphql`
       query BlogPostQuery {
-        allContentfulBlogPost(limit: 6) {
+        allContentfulBlogPost(
+        sort: {order: DESC, fields: [createdAt]},
+        limit: 6) {
           edges {
             node {
               id

@@ -10,6 +10,7 @@ import Section from '../components/Section';
 import Triangle from '../components/Triangle';
 import Header from '../components/NonHomeHeader';
 import Footer from '../components/Footer';
+import Container from '../components/PageContainer'
 
 const Background = () => (
   <div>
@@ -133,7 +134,7 @@ TILHeading.propTypes = {
 
 
 const TILSection = () => (
-  <Section.Container id="til" Background={Background} p={4} pb={5}>
+  <Container id="til" Background={Background} p={4} pb={5}>
     <Section.Header name="TIL" icon="📚 " label="til" />
     <Text
       fontSize={[ 3, 4, 5 ]}
@@ -180,7 +181,7 @@ const TILSection = () => (
         </Flex>
             )}
     />
-  </Section.Container>
+  </Container>
 );
 
 
