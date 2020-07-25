@@ -153,7 +153,7 @@ module.exports = {
                 allMarkdownRemark(
                 limit:10,
                 filter: {frontmatter: {title: {ne: ""}}},
-                 sort: {order: ASC, fields: [frontmatter___date]}) {
+                 sort: {order: DSC, fields: [frontmatter___date]}) {
                     edges {
                       node {
                       fields {
