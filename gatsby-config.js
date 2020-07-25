@@ -144,8 +144,8 @@ module.exports = {
               serialize: ({ query: { site, allMarkdownRemark } }) => allMarkdownRemark.edges.map(edge => Object.assign({}, edge.node.frontmatter, {
                     description: edge.node.title,
                     date: new Date(edge.node.frontmatter.date),
-                    url: `${site.siteMetadata.siteUrl  }/til/${  edge.node.frontmatter.slug}`,
-                    guid: `${site.siteMetadata.siteUrl  }/til/${  edge.node.frontmatter.slug}`,
+                    url: `${site.siteMetadata.siteUrl  }/til/${edge.node.fields.heading.toLowerCase()}/${edge.node.frontmatter.slug}`,
+                    guid: `${site.siteMetadata.siteUrl  }/til/${edge.node.fields.heading.toLowerCase()}/${  edge.node.frontmatter.slug}`,
                     custom_elements: [{ "content:encoded": edge.node.html }],
                   })),
               query: `
