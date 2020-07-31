@@ -80,11 +80,11 @@ const TILPage = ({data}) => {
           <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
 
             <TextContainer
-              width={[1, 1, 4 / 6]}
+              width={[1, 1, 6 / 8]}
               px={[1, 2, 4]}
             >
               <CenterText
-                width={[1, 1, 4 / 6]}
+                width={[1, 1, 6 / 8]}
                 px={[1, 2, 4]}
                 fontWeight='bold'
                 fontSize={6}
