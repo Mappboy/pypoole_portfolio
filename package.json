@@ -103,7 +103,7 @@
     "styled-components": "^5.1.1",
     "toml": "^2.3.6",
     "typography": "^0.16.19",
-    "yargs-parser": "^11.0.0"
+    "yargs-parser": "^13.1.2"
   },
   "devDependencies": {
     "@percy/cypress": "^2.1.1",
