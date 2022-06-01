@@ -99,7 +99,7 @@
     "reactstrap": "^8.5.1",
     "rebass": "^3.2.2",
     "redux": "^4.0.5",
-    "sharp": "^0.25.4",
+    "sharp": "^0.30.5",
     "styled-components": "^5.1.1",
     "toml": "^2.3.6",
     "typography": "^0.16.19",
