@@ -72,7 +72,7 @@
     "gatsby-source-filesystem": "^2.3.20",
     "gatsby-source-git": "^1.1.0",
     "gatsby-source-google-sheets": "^1.1.1",
-    "gatsby-transformer-remark": "^2.8.25",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^2.5.11",
     "gatsby-transformer-sqip": "^2.3.19",
     "hash-it": "^4.0.5",
